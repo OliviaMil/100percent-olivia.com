@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="only light">
+<script>
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+if (!window.location.hash) {
+  window.scrollTo(0, 0);
+  document.addEventListener('DOMContentLoaded', function() { window.scrollTo(0, 0); });
+  window.addEventListener('load', function() {
+    window.scrollTo(0, 0);
+    setTimeout(function() { window.scrollTo(0, 0); }, 50);
+    setTimeout(function() { window.scrollTo(0, 0); }, 150);
+    setTimeout(function() { window.scrollTo(0, 0); }, 500);
+  });
+}
+</script>
+<title>&ldquo;Olivia&rdquo; Zheng Milgrom &mdash; Clinical AI &amp; Knowledge Architecture</title>
+<meta name="description" content="&quot;Olivia&quot; Zheng Milgrom, MD MPH — Making clinical AI trustworthy through knowledge architecture and reasoning. Bridging healthcare stakeholders, engineering, and AI evaluation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-bg: #FAFAF8;
+    --color-text: #1a1a1a;
+    --color-text-muted: #5a5a5a;
+    --color-accent: #2563EB;
+    --color-accent-soft: #EFF6FF;
+    --color-border: #e5e5e5;
+    --color-hero-bg: #0F172A;
+    --color-hero-text: #F8FAFC;
+    --color-hero-muted: #94A3B8;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Inter', -apple-system, sans-serif;
+    --max-width: 980px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; color-scheme: only light; }
+  body {
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background: var(--color-bg);
+    line-height: 1.7;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* -- Nav -- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  nav .nav-inner {
+    max-width: var(--max-width); margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.85rem 2rem;
+  }
+  nav .nav-logo {
+    flex-shrink: 0;
+  }
+  nav .nav-logo img {
+    height: 44px; width: 44px; border-radius: 50%; display: block;
+  }
+  nav .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+  nav .nav-links a {
+    color: var(--color-hero-muted); text-decoration: none;
+    font-size: 0.875rem; font-weight: 400; transition: color 0.2s;
+  }
+  nav .nav-links a:hover { color: var(--color-hero-text); }
+
+  /* -- Hero -- */
+  .hero {
+    background: var(--color-hero-bg);
+    color: var(--color-hero-text);
+    padding: 8rem 2rem 5rem;
+  }
+  .hero-inner { max-width: var(--max-width); margin: 0 auto; }
+  .hero-identity {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 1.2rem;
+  }
+  .hero-photo {
+    flex-shrink: 0; width: 52px; height: 52px;
+    border-radius: 50%; overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.15);
+  }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
+  .hero-label {
+    display: inline-block;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--color-hero-muted);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 700; line-height: 1.2;
+    margin-bottom: 1.5rem; max-width: 780px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, #60A5FA, #A78BFA);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-subtitle {
+    font-size: 1.15rem; color: var(--color-hero-muted);
+    max-width: 780px; line-height: 1.75; margin-bottom: 2.5rem;
+  }
+  .hero-credentials { display: flex; flex-wrap: wrap; gap: 0.5rem; max-width: 780px; }
+  .hero-credentials span {
+    font-size: 0.78rem; font-weight: 500;
+    padding: 0.35rem 0.85rem; border-radius: 100px;
+    background: rgba(255,255,255,0.07); color: #CBD5E1;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* -- Sections -- */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: var(--max-width); margin: 0 auto; }
+  .section-label {
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--color-accent); margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 700; line-height: 1.25; margin-bottom: 1rem;
+    max-width: 780px;
+  }
+  .section-subtitle {
+    color: var(--color-text-muted);
+    font-size: 1.05rem; max-width: 780px;
+    margin-bottom: 3rem; line-height: 1.7;
+  }
+
+  /* -- Problem -- */
+  .problem-section { background: #fff; }
+  .problem-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+    max-width: 780px;
+  }
+  .problem-card {
+    padding: 2rem; border-radius: 12px;
+    border: 1px solid var(--color-border); background: var(--color-bg);
+  }
+  .problem-card .card-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; margin-bottom: 1rem;
+  }
+  .problem-card:nth-child(1) .card-icon { background: #FEE2E2; }
+  .problem-card:nth-child(2) .card-icon { background: #FEF3C7; }
+  .problem-card:nth-child(3) .card-icon { background: #DBEAFE; }
+  .problem-card:nth-child(4) .card-icon { background: #E0E7FF; }
+  .problem-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .problem-card p { font-size: 0.88rem; color: var(--color-text-muted); line-height: 1.65; }
+
+  /* -- Example -- */
+  .example-section { background: var(--color-bg); }
+  .example-box {
+    background: linear-gradient(135deg, #1E293B, #0F172A);
+    border-radius: 16px; padding: 2.5rem; color: #F8FAFC;
+    max-width: 780px;
+  }
+  .example-box h3 {
+    font-family: var(--font-display); font-size: 1.2rem;
+    font-weight: 700; margin-bottom: 1rem;
+  }
+  .example-box p { font-size: 0.95rem; color: #CBD5E1; line-height: 1.75; margin-bottom: 1rem; }
+  .example-failures {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 1.5rem;
+  }
+  .example-failure {
+    padding: 1.25rem; border-radius: 10px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  }
+  .example-failure h4 {
+    font-size: 0.78rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.06em; margin-bottom: 0.4rem;
+  }
+  .example-failure p { font-size: 0.82rem; color: #94A3B8; line-height: 1.6; margin-bottom: 0; }
+  .failure-surface h4 { color: #FCA5A5; }
+  .failure-drift h4 { color: #FCD34D; }
+  .failure-hallucination h4 { color: #93C5FD; }
+
+  /* -- Approach -- */
+  .approach-section { background: #fff; }
+
+  /* Architecture Diagram */
+  .arch-diagram {
+    max-width: 780px; margin-bottom: 3rem;
+    background: linear-gradient(135deg, #0F172A, #1E293B);
+    border-radius: 16px; padding: 2.5rem 2rem; color: #F8FAFC;
+    overflow: hidden;
+  }
+  .arch-flow {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0; flex-wrap: nowrap;
+  }
+  .arch-node {
+    width: 130px; min-height: 80px; border-radius: 10px; text-align: center;
+    font-size: 0.8rem; font-weight: 600; line-height: 1.35;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 0.6rem 0.5rem;
+  }
+  .arch-node-sub {
+    font-size: 0.68rem; font-weight: 400; opacity: 0.75; margin-top: 0.2rem;
+  }
+  .arch-node-human {
+    background: rgba(167,139,250,0.15); border: 1px solid rgba(167,139,250,0.35);
+    color: #C4B5FD;
+  }
+  .arch-node-llm {
+    background: rgba(96,165,250,0.15); border: 1px solid rgba(96,165,250,0.35);
+    color: #93C5FD;
+  }
+  .arch-node-knowledge {
+    background: rgba(52,211,153,0.12); border: 1px solid rgba(52,211,153,0.3);
+    color: #6EE7B7; width: auto; padding: 0.7rem 0.9rem;
+  }
+  .arch-node-knowledge .arch-klayer {
+    font-size: 0.68rem; font-weight: 500; padding: 0.25rem 0.6rem;
+    border-radius: 4px; background: rgba(52,211,153,0.1);
+    border: 1px solid rgba(52,211,153,0.2); margin: 0.15rem 0;
+    white-space: nowrap; display: flex; align-items: center; gap: 0.35rem;
+  }
+  .arch-node-knowledge .arch-klayer .kl-q {
+    font-style: italic; opacity: 0.8;
+  }
+  .arch-node-knowledge .arch-klayer .kl-sep {
+    opacity: 0.4;
+  }
+  .arch-node-reasoner {
+    background: rgba(251,191,36,0.15); border: 1px solid rgba(251,191,36,0.35);
+    color: #FCD34D;
+  }
+  .arch-arrow {
+    font-size: 1rem; color: #475569; padding: 0 0.4rem;
+    font-weight: 300; flex-shrink: 0;
+  }
+
+  /* Approach Detail Steps */
+  .approach-flow {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+    max-width: 780px;
+  }
+  .approach-step {
+    background: var(--color-bg); padding: 2rem 1.75rem; border-radius: 12px;
+    border: 1px solid var(--color-border);
+  }
+  .approach-step .step-num {
+    font-family: var(--font-display); font-size: 2rem; font-weight: 700;
+    color: #E2E8F0; margin-bottom: 0.8rem; line-height: 1;
+  }
+  .approach-step h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .approach-step p { font-size: 0.88rem; color: var(--color-text-muted); line-height: 1.65; }
+
+  /* -- Writing -- */
+  .writing-section { background: var(--color-bg); }
+  .writing-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; max-width: 780px; }
+  .writing-card {
+    display: block; padding: 1.75rem; border-radius: 12px;
+    background: #fff; border: 1px solid var(--color-border);
+    text-decoration: none; color: inherit; transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .writing-card:hover { border-color: var(--color-accent); box-shadow: 0 4px 16px rgba(37,99,235,0.08); }
+  .writing-card .writing-meta {
+    font-size: 0.78rem; color: var(--color-text-muted); margin-bottom: 0.5rem;
+    display: flex; gap: 0.75rem; align-items: center;
+  }
+  .writing-card .writing-meta .writing-venue { font-weight: 600; color: var(--color-text); }
+  .writing-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .writing-card p { font-size: 0.88rem; color: var(--color-text-muted); line-height: 1.65; }
+  .writing-card .read-link {
+    display: inline-block; margin-top: 0.75rem; font-size: 0.82rem;
+    font-weight: 500; color: var(--color-accent);
+  }
+  .writing-card-photo {
+    width: 100%; border-radius: 8px; margin-bottom: 1rem;
+    max-height: 240px; object-fit: cover; object-position: center 45%;
+  }
+  .writing-card-photo.photo-top { object-position: center 20%; }
+
+  /* -- Community -- */
+  .community-section { background: #fff; }
+  .community-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 780px; }
+  .community-video {
+    border-radius: 12px; overflow: hidden;
+    border: 1px solid var(--color-border); background: #000;
+  }
+  .community-video iframe {
+    width: 100%; aspect-ratio: 16/9; display: block; border: none;
+  }
+  .community-video .video-caption {
+    padding: 1rem 1.25rem; background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+  }
+  .community-video .video-caption h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .community-video .video-caption p { font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.6; }
+
+  /* -- STEAM Slides -- */
+  .steam-slides { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 780px; margin-top: 2rem; }
+  .steam-slide {
+    border-radius: 12px; overflow: hidden; position: relative;
+    aspect-ratio: 4/3; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    padding: 1.5rem;
+  }
+  .steam-slide-1 {
+    background: #7c4dff;
+    background: linear-gradient(135deg, #7c4dff 0%, #6a3de8 100%);
+    color: #fff;
+  }
+  .steam-slide-1 .slide-robot {
+    font-size: 2.5rem; margin-bottom: 0.5rem;
+  }
+  .steam-slide-1 h3 {
+    font-size: 1.6rem; font-weight: 800; font-style: italic;
+    margin-bottom: 0.3rem; color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  }
+  .steam-slide-1 .slide-subtitle {
+    font-size: 1rem; font-weight: 600; font-style: italic;
+    color: #ffd54f;
+  }
+  .steam-slide-1 .slide-icons {
+    margin-top: 0.75rem; font-size: 1.2rem; letter-spacing: 0.5rem;
+  }
+  .steam-slide-1 .corner-blob {
+    position: absolute; border-radius: 50%; opacity: 0.5;
+  }
+  .steam-slide-1 .blob-tl { width: 60px; height: 60px; background: #e91e90; top: -10px; left: -10px; }
+  .steam-slide-1 .blob-tr { width: 50px; height: 50px; background: #2196f3; top: 10px; right: -5px; }
+  .steam-slide-1 .blob-bl { width: 55px; height: 55px; background: #1976d2; bottom: 10px; left: -5px; }
+  .steam-slide-1 .blob-br { width: 45px; height: 45px; background: #e91e90; bottom: -5px; right: 10px; }
+
+  .steam-slide-2 {
+    background: #1a1a3e;
+    color: #fff; padding: 1.25rem;
+    align-items: stretch; justify-content: flex-start;
+    aspect-ratio: auto; min-height: 0;
+  }
+  .steam-slide-2 .quiz-header {
+    font-size: 0.85rem; font-weight: 700; color: #ffa726;
+    margin-bottom: 0.6rem; text-align: center;
+  }
+  .rounds-section {
+    margin-bottom: 0.7rem;
+  }
+  .rounds-section h4 {
+    font-size: 0.72rem; font-weight: 700; color: #e0e0e0;
+    text-align: center; margin-bottom: 0.4rem; text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .rounds-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.35rem;
+  }
+  .round-card {
+    background: linear-gradient(135deg, #7c4dff, #536dfe);
+    border-radius: 8px; padding: 0.5rem 0.3rem; text-align: center;
+  }
+  .round-card .round-emoji { font-size: 1.3rem; display: block; margin-bottom: 0.15rem; }
+  .round-card .round-label { font-size: 0.55rem; font-weight: 700; color: #ffd54f; display: block; }
+  .round-card .round-time { font-size: 0.48rem; color: rgba(255,255,255,0.7); display: block; margin-top: 0.1rem; }
+  .round-card .round-q { font-size: 0.52rem; color: #fff; font-weight: 600; margin-top: 0.2rem; display: block; }
+  .steam-slide-2 .quiz-board {
+    border: 2px solid #ffa726; border-radius: 10px;
+    padding: 0.6rem; flex: 1; display: flex; flex-direction: column;
+    justify-content: center; background: rgba(255,255,255,0.04);
+  }
+  .steam-slide-2 .quiz-board h4 {
+    font-size: 0.72rem; font-weight: 700; color: #ffa726;
+    text-align: center; margin-bottom: 0.4rem;
+  }
+  .steam-slide-2 .quiz-options {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.35rem;
+  }
+  .steam-slide-2 .quiz-option {
+    background: #7c4dff; border-radius: 8px;
+    padding: 0.4rem 0.5rem; font-size: 0.62rem;
+    font-weight: 600; color: #fff; text-align: center;
+    line-height: 1.3;
+  }
+
+  .play-along-prompt {
+    margin: 0; text-align: center;
+    font-size: 0.85rem; font-weight: 600; color: var(--color-accent);
+    padding: 0.75rem 1.25rem; border-radius: 10px;
+    background: rgba(59, 130, 246, 0.08);
+  }
+
+  @media (max-width: 600px) {
+    .steam-slides { grid-template-columns: 1fr; }
+    .steam-slide-1 h3 { font-size: 1.2rem; }
+    .steam-slide-1 .slide-subtitle { font-size: 0.85rem; }
+    .steam-slide-2 .quiz-header { font-size: 0.75rem; }
+    .steam-slide-2 .quiz-option { font-size: 0.6rem; padding: 0.35rem 0.4rem; }
+  }
+
+  /* -- Contact -- */
+  .contact-section {
+    background: var(--color-hero-bg); color: var(--color-hero-text);
+    text-align: center;
+  }
+  .contact-section .section-label { color: #60A5FA; }
+  .contact-section .section-title { color: var(--color-hero-text); margin-left: auto; margin-right: auto; }
+  .contact-section .section-subtitle {
+    color: var(--color-hero-muted); margin-left: auto; margin-right: auto;
+  }
+  .contact-links {
+    display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+  }
+  .contact-links a, .contact-links span {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.5rem; border-radius: 100px;
+    font-size: 0.9rem; font-weight: 500;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .contact-links .btn-primary { background: #2563EB; color: #fff; }
+  .contact-links .btn-primary:hover { background: #1D4ED8; }
+  .contact-links .btn-secondary {
+    background: rgba(255,255,255,0.08); color: #CBD5E1;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .contact-links .btn-secondary:hover { background: rgba(255,255,255,0.14); }
+
+  footer {
+    text-align: center; padding: 2rem;
+    font-size: 0.78rem; color: var(--color-text-muted);
+    background: var(--color-bg); border-top: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 768px) {
+    .problem-grid, .approach-flow, .example-failures { grid-template-columns: 1fr; }
+    .community-grid { grid-template-columns: 1fr; }
+    nav .nav-links { gap: 1rem; }
+    nav .nav-links a { font-size: 0.78rem; }
+    section { padding: 3.5rem 1.25rem; }
+    .hero { padding: 6.5rem 1.25rem 3.5rem; }
+    .example-box { padding: 2rem; }
+  }
+
+  /* Prevent Edge/browser forced dark mode from overriding colors */
+  @media (forced-colors: active) {
+    .hero h1 em { -webkit-text-fill-color: unset; background: none; color: #60A5FA; }
+    .hero-credentials span { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: #CBD5E1; }
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { color-scheme: only light; }
+    .hero, .hero h1, .hero h1 em, .hero-subtitle, .hero-credentials span,
+    .hero-label, .hero-photo, nav, nav a, .section-inner, footer,
+    section, body, html {
+      forced-color-adjust: none;
+      -ms-high-contrast-adjust: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-links">
+      <a href="#problem">The Problem</a>
+      <a href="#approach">Approach</a>
+      <a href="#writing">Public Voice</a>
+      <a href="#community">Beyond</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="#" class="nav-logo"><img src="logo-100-olivia.png" alt="100% Olivia"></a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Making clinical AI <em>trustworthy</em> through knowledge architecture &amp; <em>reasoning</em></h1>
+
+
+    <div class="hero-identity" style="margin-bottom: 1.5rem;">
+      <div class="hero-photo">
+        <img src="photo-profile.jpg" alt="&ldquo;Olivia&rdquo; Zheng Milgrom" />
+      </div>
+      <span class="hero-label">&ldquo;Olivia&rdquo; Zheng Milgrom, MD, MPH</span>
+    </div>
+    <p class="hero-subtitle">
+      Combining the best of LLMs and symbolic semantics to produce explainable clinical knowledge &mdash; at the speed of AI, with the rigor of curated expert knowledge.
+    </p>
+    <p class="hero-subtitle" style="margin-top: -1.5rem;">
+      I design and ship knowledge architecture and evaluation frameworks at enterprise scale &mdash; catching where AI drifts from domain truth, working across healthcare stakeholders, engineering teams, and end users.
+    </p>
+    <div class="hero-credentials">
+      <span>Clinical Knowledge Architecture</span>
+      <span>LLM Grounding &amp; Evaluation</span>
+      <span>Neuro-Symbolic AI</span>
+      <span>Semantic AI, Knowledge Graphs &amp; Formal Reasoning</span>
+      <span>MCP Tool Building</span>
+      <span>Enterprise AI &mdash; From Design to Production</span>
+      <span>Explainable AI &amp; Visual Reasoning Design</span>
+      <span>Clinical Background (MD)</span>
+      <span>National Library of Medicine Informatics Fellow</span>
+      <span>Recognized Expertise Across Industry &amp; Academia</span>
+    </div>
+  </div>
+</section>
+
+<!-- The Problem -->
+<section class="problem-section" id="problem">
+  <div class="section-inner">
+    <div class="section-title">Problems that keep showing up when AI meets high-stakes domains</div>
+    <p class="section-subtitle">
+      LLMs are powerful, but in high-stakes areas like healthcare, sounding right isn&rsquo;t the same as being right &mdash;
+      and even when AI can explain itself, that doesn&rsquo;t mean experts can verify it.
+    </p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="card-icon">&#x1F50D;</div>
+        <h3>When Retrieval Misleads</h3>
+        <p>The model finds a concept that looks like a match based on word overlap, but means something clinically different. Keyword similarity masks semantic divergence.</p>
+      </div>
+      <div class="problem-card">
+        <div class="card-icon">&#x1F300;</div>
+        <h3>Semantic Drift</h3>
+        <p>The answer starts in the right clinical territory but gradually shifts meaning through plausible-sounding steps &mdash; ending somewhere subtly wrong.</p>
+        <a href="https://medium.com/@olivia.milgrom/a-semantic-drift-perfect-storm-in-medical-ai-f0e9cd1b0f03" target="_blank" rel="noopener" style="display: inline-block; margin-top: 0.75rem; font-size: 0.82rem; font-weight: 500; color: var(--color-accent); text-decoration: none;">Read my case study &rarr;</a>
+      </div>
+      <div class="problem-card">
+        <div class="card-icon">&#x1F4AD;</div>
+        <h3>Hallucination</h3>
+        <p>The model generates clinical codes, classifications, or relationships that don't exist. Without a formal knowledge base to check against, fabrications are invisible.</p>
+      </div>
+      <div class="problem-card">
+        <div class="card-icon">&#x1F9E9;</div>
+        <h3>The Explainability Gap</h3>
+        <p>AI can show a reasoning path, but domain experts need to verify, explore, compare, and generate hypotheses &mdash; not just read explanations. That&rsquo;s what it takes to keep the AI accountable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Baby Blues Example — PRESERVED FOR FUTURE USE (pending submission)
+<section class="example-section">
+  <div class="section-inner">
+    <div class="example-box">
+      <h3>One phrase, all three failures: "Baby blues"</h3>
+      <p>When an AI system processes the clinical concept "Baby blues" (postpartum mood changes,
+        ICD-10-CM code F53.0), all three failure modes appear at once — making this a useful litmus
+        test for any clinical AI system.</p>
+      <div class="example-failures">
+        <div class="example-failure failure-surface"><h4>Surface-Level</h4><p>Lexical search returns "Blue baby" — cyanotic heart disease in newborns. Word overlap, completely wrong clinical meaning.</p></div>
+        <div class="example-failure failure-drift"><h4>Semantic Drift</h4><p>The LLM starts with postpartum mood, drifts through "depression," and lands on major depressive disorder — a different condition requiring different treatment.</p></div>
+        <div class="example-failure failure-hallucination"><h4>Hallucination</h4><p>The model invents plausible-sounding but nonexistent ICD-10 codes, or fabricates clinical relationships not in any knowledge base.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- Approach -->
+<section class="approach-section" id="approach">
+  <div class="section-inner">
+    <span class="section-label">Technical Approach</span>
+    <div class="section-title">Bidirectional grounding &mdash; reasoning built in, not patched on</div>
+    <p class="section-subtitle">
+      Designing systems where clinical knowledge and AI inform each other continuously &mdash; not as a pipeline, but as a layered architecture.
+    </p>
+
+    <!-- Architecture Diagram -->
+    <div class="arch-diagram">
+      <div class="arch-flow">
+        <div class="arch-node arch-node-human">Human</div>
+        <div class="arch-arrow">&harr;</div>
+        <div class="arch-node arch-node-llm">LLM<div class="arch-node-sub">semantic interpreter<br>+ hypothesis generator</div></div>
+        <div class="arch-arrow">&harr;</div>
+        <div class="arch-node arch-node-knowledge">
+          <div style="font-size: 0.82rem; font-weight: 600; margin-bottom: 0.4rem;">Knowledge Layers</div>
+          <div class="arch-klayer"><span class="kl-q">How the domain is defined</span> <span class="kl-sep">&middot;</span> Ontology</div>
+          <div class="arch-klayer"><span class="kl-q">How things relate</span> <span class="kl-sep">&middot;</span> Knowledge Graph</div>
+          <div class="arch-klayer"><span class="kl-q">What must hold</span> <span class="kl-sep">&middot;</span> Rules &amp; Constraints</div>
+        </div>
+        <div class="arch-arrow">&harr;</div>
+        <div class="arch-node arch-node-reasoner">Reasoning<div class="arch-node-sub">knowledge computation<br>+ verification</div></div>
+        <div class="arch-arrow">&harr;</div>
+        <div class="arch-node arch-node-human">Human<div class="arch-node-sub">visual reasoning<br>+ hypothesis exploration</div></div>
+      </div>
+    </div>
+
+    <!-- Explanatory Steps -->
+    <div class="approach-flow">
+      <div class="approach-step">
+        <div class="step-num">01</div>
+        <h3>Layered Knowledge Architecture</h3>
+        <p style="margin-bottom: 0.75rem;"><span style="font-style: italic; color: var(--color-text); font-weight: 500;">&lsquo;RAG is dead&rsquo;</span> &mdash; when voices across the industry say this, what they mean is that store-and-retrieve was never enough.</p>
+        <p>Even knowledge graphs &mdash; now the fastest-rising trusted context layer for GenAI in enterprise AI (according to <a href="https://www.gartner.com/en/articles/hype-cycle-for-artificial-intelligence" target="_blank" rel="noopener" style="color: var(--color-accent); text-decoration: underline;">Gartner</a>) &mdash; are only one layer. I specialize in the deeper conceptual infrastructure where clinical logic can be <em>proven</em>, not just looked up.</p>
+      </div>
+      <div class="approach-step">
+        <div class="step-num">02</div>
+        <h3>Hybrid Retrieval + Reasoning Loop</h3>
+        <p>Most AI systems stop at retrieval; others still rely on black-box machine learning. Neither LLM nor symbolic reasoning alone is sufficient. I design hybrid approaches where clinical knowledge and AI inform each other continuously.</p>
+      </div>
+      <div class="approach-step">
+        <div class="step-num">03</div>
+        <h3>Automatic Evaluation at Scale</h3>
+        <p>Every answer traced back to its contexts and original intent &mdash; built to be:</p>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.6rem;">
+          <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 4px; background: #EFF6FF; color: #2563EB;">Configurable</span>
+          <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 4px; background: #EFF6FF; color: #2563EB;">Auditable</span>
+          <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 4px; background: #EFF6FF; color: #2563EB;">Explainable</span>
+          <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 4px; background: #EFF6FF; color: #2563EB;">Enterprise-scale</span>
+        </div>
+        <!-- PRESERVED DETAIL: AI evaluation tools deployed via MCP (Model Context Protocol — an open standard for connecting AI models to external knowledge and tools). -->
+      </div>
+      <div class="approach-step" style="background: linear-gradient(135deg, #FAFAF8 0%, #EFF6FF 100%); border: 1.5px solid #bfd4f2;">
+        <div class="step-num">04</div>
+        <h3><span style="background: linear-gradient(135deg, #60A5FA, #A78BFA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Visual</span> Reasoning &amp; Sensemaking</h3>
+        <p style="font-style: italic; color: var(--color-text); font-weight: 500; margin-bottom: 0.6rem;">Explainability, taken even to its visual form.</p>
+        <p style="margin-bottom: 0.8rem;">A paradigm shift in how auditing happens &mdash; empowering domain experts to go from open-ended investigation to focused hypotheses.</p>
+        <div style="display: flex; gap: 0.5rem; margin-top: 0.4rem; flex-wrap: wrap;">
+          <span style="font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 12px; background: rgba(96,165,250,0.12); color: #3B82F6; font-weight: 500;">Surface inconsistencies</span>
+          <span style="font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 12px; background: rgba(167,139,250,0.12); color: #7C3AED; font-weight: 500;">Expose assumptions</span>
+          <span style="font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 12px; background: rgba(96,165,250,0.12); color: #3B82F6; font-weight: 500;">Explore hypotheses</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Writing & Media -->
+<section class="writing-section" id="writing">
+  <div class="section-inner">
+    <span class="section-label">Public Voice</span>
+    <div class="section-title">Writing, speaking, and presenting</div>
+    <p class="section-subtitle">
+      A domain expert, builder, and designer. An advocate for trustworthy clinical AI.
+    </p>
+    <div class="writing-grid">
+      <div class="writing-card" style="cursor: default;">
+        <img src="photo-himss.jpg" alt="Olivia Milgrom interviewed at HIMSS AI Pavilion by Healthcare IT Today" class="writing-card-photo" />
+        <div class="writing-meta">
+          <span class="writing-venue">Healthcare IT Today</span>
+          <span>Mar 2026</span>
+          <span>HIMSS26 AI Pavilion</span>
+        </div>
+        <h3>Sharing the Vision: Combining LLMs and Symbolic Semantics for Producing Explainable Clinical Knowledge at Scale</h3>
+        <div style="display: flex; gap: 1rem; margin-top: 0.75rem;">
+          <a href="https://x.com/hcittoday/status/2032238034930880684" target="_blank" rel="noopener" class="read-link" style="text-decoration: none;">Watch on X &rarr;</a>
+          <a href="https://www.linkedin.com/posts/semedy_aipavillion-himss-himss26-activity-7437967011244216320-e105" target="_blank" rel="noopener" class="read-link" style="text-decoration: none;">View on LinkedIn &rarr;</a>
+        </div>
+      </div>
+      <div class="writing-card" style="cursor: default;">
+        <img src="photo-himss24.jpg" alt="Olivia Milgrom behind the scenes at HIMSS24 Healthcare IT Today interview" class="writing-card-photo" />
+        <div class="writing-meta">
+          <span class="writing-venue">Healthcare IT Today</span>
+          <span>Mar 2024</span>
+          <span>HIMSS24 AI Pavilion</span>
+        </div>
+        <h3>Interview: Why Knowledge Management Should Be the #2 Topic After AI</h3>
+        <p>When the industry was just beginning to grapple with LLMs in healthcare &mdash; on why high-quality clinical knowledge management is the foundation for reliable AI models.</p>
+        <div style="display: flex; gap: 1rem; margin-top: 0.75rem;">
+          <a href="https://x.com/hcittoday/status/1806398636391031107" target="_blank" rel="noopener" class="read-link" style="text-decoration: none;">Watch on X &rarr;</a>
+          <a href="https://www.linkedin.com/posts/healthcareittoday_healthtech-clinicalknowledge-himss24-activity-7182137829924220928-ICbj" target="_blank" rel="noopener" class="read-link" style="text-decoration: none;">View on LinkedIn &rarr;</a>
+        </div>
+      </div>
+      <div class="writing-card" style="cursor: default;">
+        <img src="photo-amia-poster.jpg" alt="Olivia Milgrom presenting her poster at AMIA 2025 Annual Symposium" class="writing-card-photo photo-top" />
+        <div class="writing-meta">
+          <span class="writing-venue">American Medical Informatics Association (AMIA)</span>
+          <span>Nov 2025</span>
+          <span>Atlanta, GA</span>
+          <span>Poster Presentation at Annual Symposium</span>
+        </div>
+        <h3>Knowledge Graph for Propositional Reasoning: A Multi-Case Study of CCSR (Clinical Classifications Software Refined) for ICD-10-PCS (Procedure Coding System)</h3>
+        <p>When classification rules (inclusion criteria) quietly break, how do you find out? Using knowledge graph reasoning to surface three types of logical inconsistency &mdash; the kind conventional methods miss.</p>
+        <a href="P66-Milgrom-AMIA2025-KG-Propositional-Reasoning.pdf" target="_blank" rel="noopener" class="read-link" style="text-decoration: none;">View poster &rarr;</a>
+      </div>
+      <div class="writing-card" style="cursor: default;">
+        <img src="photo-amia.jpg" alt="Olivia Milgrom presenting at AMIA 2025 Annual Symposium" class="writing-card-photo" />
+        <div class="writing-meta">
+          <span class="writing-venue">American Medical Informatics Association (AMIA)</span>
+          <span>Nov 2025</span>
+          <span>Atlanta, GA</span>
+          <span>Podium Presentation at Annual Symposium</span>
+        </div>
+        <h3>Hybrid Retrieval and Reasoning to Predict Procedure Codes from Key Terms Using Knowledge Graphs and LLMs</h3>
+        <p>Exploring six hybrid approaches that combine knowledge graph traversal with LLM capabilities &mdash; showing when structured retrieval before generation outperforms LLMs alone.</p>
+      </div>
+      <div class="writing-card" style="cursor: default;">
+        <div class="writing-meta">
+          <span class="writing-venue">Medium</span>
+          <span>Dec 2025</span>
+          <span>4 min read</span>
+        </div>
+        <h3>A &lsquo;Semantic Drift&rsquo; Perfect Storm: How Medical AI Chatbots Get It Wrong</h3>
+        <p>A real-world case study dissecting how a medical AI chatbot confidently gave wrong dosing advice for dialysis patients.</p>
+        <p style="margin-top: 0.5rem; font-size: 0.82rem; color: var(--color-accent); font-weight: 500;">Featured in
+          <a href="https://dochobbs.github.io/ai101/clinical-decision-support.html" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">AI 101: A Self-Paced Guide to AI in Medicine</a>, a resource for physicians
+        </p>
+        <a href="https://medium.com/@olivia.milgrom/a-semantic-drift-perfect-storm-in-medical-ai-f0e9cd1b0f03" target="_blank" rel="noopener" class="read-link" style="text-decoration: none;">Read on Medium &rarr;</a>
+      </div>
+      <div class="writing-card" style="cursor: default;">
+        <div class="writing-meta">
+          <span class="writing-venue">Where the Expertise Comes From</span>
+        </div>
+        <h3>The full evidence-based medicine cycle &mdash; lived, practiced, and now built into AI</h3>
+        <!-- LHS Cycle Diagram -->
+        <div style="margin: 1rem 0 0;">
+          <img src="lhs-cycle-prototype.svg" alt="Learning Health System cycle: Bedside Care, Real-World Evidence, Evidence Synthesis, Knowledge Dissemination, Closing the Loop — all feeding into Knowledge Architecture and AI at the center" style="width: 100%; max-width: 520px; display: block; margin: 0 auto;" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Beyond the Work -->
+<section class="community-section" id="community">
+  <div class="section-inner">
+    <span class="section-label">Beyond the Work</span>
+    <div class="section-title">Growing minds &mdash; including my own</div>
+
+    <!-- Sub-section: My Unconventional Path -->
+    <div style="margin-bottom: 3rem;">
+      <h3 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-heading);">My Unconventional Path</h3>
+      <div style="max-width: 780px; font-size: 1rem; line-height: 1.8; color: var(--color-text-muted);">
+        <p>Growing up, I was drawn to two things &mdash; <strong style="color: var(--color-heading);">art and math</strong>.</p>
+        <p style="margin-top: 0.5rem;">Drawing, calligraphy, stage performance&hellip; and the satisfaction of a proof that holds without a crack.</p>
+        <p style="margin-top: 1.2rem;">My math teacher told me I was the best student he&rsquo;d ever had, and he believed I could make a difference if I stayed with STEM.</p>
+        <p style="margin-top: 0.5rem;">But I wanted something totally practical &mdash; something that would make a tangible difference in people&rsquo;s lives. <strong style="color: var(--color-heading);">I chose medicine.</strong></p>
+        <p style="margin-top: 1.2rem;">While navigating the <strong style="color: var(--color-heading);">unsustainable realities</strong> of medicine, I had my aha moment: encountering the work of <strong style="color: var(--color-heading);">Yuval Noah Harari</strong>, I saw how technology reshapes humanity and realized the power of combining clinical knowledge with AI, before large language models arrived.</p>
+        <p style="margin-top: 1.2rem;"><strong style="color: var(--color-heading);">AI fails not for lack of data, but for lack of understanding.</strong></p>
+        <p style="margin-top: 0.5rem;">Philosophy &mdash; the questions it asks, and the <strong style="color: var(--color-heading);">ontological frameworks</strong> it clarifies &mdash; is the key to fixing it.</p>
+        <p style="margin-top: 0.5rem;">As <a href="https://sloanreview.mit.edu/video/philosophy-eats-ai-what-leaders-should-know/" target="_blank" rel="noopener" style="color: var(--color-accent); text-decoration: none; font-weight: 500;">MIT Sloan</a> put it, <strong style="color: var(--color-heading);">&lsquo;Philosophy eats AI.&rsquo;</strong></p>
+      </div>
+    </div>
+
+    <!-- Sub-section: Educating the Next Generation -->
+    <div style="margin-top: 3rem; padding-top: 3rem; border-top: 1px solid var(--color-border); margin-bottom: 4rem;">
+      <h3 style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--color-heading);">Educating the Next Generation</h3>
+      <p style="color: var(--color-text-muted); font-size: 1rem; margin-bottom: 0.75rem; line-height: 1.7; max-width: 780px;">
+        Teaching kids to tell fake from true &mdash; in art and in AI, the same question applies.
+      </p>
+      <p style="color: var(--color-text-muted); font-size: 1rem; margin-bottom: 2rem; line-height: 1.7; max-width: 780px;">
+        I bring that question to elementary school kids: can you tell what&rsquo;s real
+        and what&rsquo;s AI?
+      </p>
+    </div>
+
+    <!-- STEAM Activity Slides (first) -->
+    <div class="steam-slides">
+      <!-- Slide 1: Title Slide -->
+      <div class="steam-slide steam-slide-1">
+        <div class="corner-blob blob-tl"></div>
+        <div class="corner-blob blob-tr"></div>
+        <div class="corner-blob blob-bl"></div>
+        <div class="corner-blob blob-br"></div>
+        <div class="slide-robot">&#x1F916;</div>
+        <h3>AI Dance Room</h3>
+        <div class="slide-subtitle">Real or Fake Animals? You Guess!</div>
+        <div class="slide-icons">&#x1F43E; &#x1F437; &#x1F54A; &#x1F43E; &#x1F437;</div>
+      </div>
+
+      <!-- Slide 2: 3 Rounds + Bonus Quiz -->
+      <div class="steam-slide steam-slide-2">
+        <div class="quiz-header">&#x1F50D; You Are AI Detectives!</div>
+
+        <!-- Three Rounds -->
+        <div class="rounds-section">
+          <h4>&#x25B6; Play &lsquo;I Need to Zone Out (and Dance Now)&rsquo; &mdash; Real or Fake?</h4>
+          <div class="rounds-grid">
+            <div class="round-card">
+              <span class="round-emoji">&#x1F440;</span>
+              <span class="round-label">Round 1</span>
+              <span class="round-time">0:00 &ndash; 0:30</span>
+              <span class="round-q">Real or fake animals?</span>
+            </div>
+            <div class="round-card">
+              <span class="round-emoji">&#x1F440;</span>
+              <span class="round-label">Round 2</span>
+              <span class="round-time">0:30 &ndash; 1:00</span>
+              <span class="round-q">Real or fake animals?</span>
+            </div>
+            <div class="round-card">
+              <span class="round-emoji">&#x1F440;</span>
+              <span class="round-label">Round 3</span>
+              <span class="round-time">1:00 &ndash; 1:30</span>
+              <span class="round-q">Real or fake animals?</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bonus: Who Sang It? -->
+        <div class="quiz-board">
+          <h4>&#x1F3A4; Bonus: Who Sang This Song?</h4>
+          <div class="quiz-options">
+            <div class="quiz-option">A) Olivia Milgrom - me</div>
+            <div class="quiz-option">D) The principal from your elementary school</div>
+            <div class="quiz-option">B) AI / Robot</div>
+            <div class="quiz-option">E) Rumi from K-pop Demon Hunter</div>
+            <div class="quiz-option">C) Taylor Swift</div>
+            <div class="quiz-option">F) The pelican/bird in the video</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Videos -->
+    <div class="community-grid">
+      <div class="community-video">
+        <iframe src="https://www.youtube.com/embed/BuSH_kAuNek" title="I need to zone out (and dance now) - AI Song" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <div class="video-caption">
+          <h4>&ldquo;I Need to Zone Out (and Dance Now)&rdquo;</h4>
+          <p>I made this song and music video &mdash; and played it
+          at an elementary school festival where kids tried the guessing game above.
+          &#x25B6; Press play the music video and try the guessing game yourself!</p>
+        </div>
+      </div>
+      <div class="community-video">
+        <iframe src="https://www.youtube.com/embed/_xEVn1Y7H2Y" title="Robot needs to zoom out and dance now" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <div class="video-caption">
+          <h4>Robot Dance Performance</h4>
+          <p>If you have guessed correctly, a real robot would dance to the song &mdash;
+          showing kids how AI, music, and robotics connect.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <span class="section-label">Get in Touch</span>
+    <div class="section-title">Let&rsquo;s talk about trustworthy clinical AI</div>
+    <p class="section-subtitle">
+      Whether you're working on clinical AI, exploring how knowledge representation
+      can improve LLM reliability, or just curious about this space &mdash;
+      I'm always happy to connect and exchange ideas.
+    </p>
+    <div class="contact-links">
+      <a href="#" class="btn-primary" id="email-reveal" onclick="event.preventDefault();var a='contact',b='100percent-olivia',c='com';var addr=a+'@'+b+'.'+c;this.href='mail'+'to:'+addr;this.textContent=addr;this.onclick=null;this.style.cursor='pointer';" style="cursor: pointer; text-decoration: none;">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Click to reveal email
+      </a>
+      <a href="https://www.linkedin.com/in/oliviamilgrom" class="btn-secondary" target="_blank" rel="noopener">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Olivia Z. Milgrom. All rights reserved.
+  <div style="margin-top: 0.4rem; font-size: 0.72rem; opacity: 0.7;">This is a personal website. Views expressed here are my own.</div>
+</footer>
+
+</body>
+</html>
