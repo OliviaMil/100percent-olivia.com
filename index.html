@@ -556,7 +556,14 @@ if (!window.location.hash) {
       <div class="problem-card" style="grid-column: 1 / -1;">
         <div class="card-icon">&#x2696;&#xFE0F;</div>
         <h3>Logical Rule Misapplication</h3>
-        <p>Even when what the system reasons over is correct &mdash; the knowledge holds, the source is right, the concept didn&rsquo;t drift &mdash; <em>how</em> it reasons over that knowledge still cannot be compromised. Clinical medicine&rsquo;s conditional logic is among the densest of any domain (IF&thinsp;/&thinsp;AND&thinsp;/&thinsp;OR&thinsp;/&thinsp;UNLESS&thinsp;/&thinsp;EXCEPT&thinsp;/&thinsp;satisfying more than N&thinsp;out of&thinsp;M criteria). When a clinical AI cannot hold that logic, it doesn&rsquo;t fail &mdash; it shortcuts.</p>
+        <p>Even when what the system reasons over is correct &mdash; the knowledge holds, the source is right, the concept didn&rsquo;t drift &mdash; <em>how</em> it reasons over that knowledge still cannot be compromised.</p>
+        <p style="margin-top: 0.65rem;">Clinical medicine&rsquo;s conditional logic is among the densest of any domain:</p>
+        <ul style="margin: 0.5rem 0 0.65rem 1.1rem; font-size: 0.88rem; color: var(--color-text-muted); line-height: 1.9;">
+          <li><strong>IF &nbsp;/&nbsp; AND &nbsp;/&nbsp; OR</strong></li>
+          <li><strong>UNLESS &nbsp;/&nbsp; EXCEPT</strong></li>
+          <li><strong>Satisfying more than N out of M criteria</strong></li>
+        </ul>
+        <p>When a clinical AI cannot hold that logic, it doesn&rsquo;t fail &mdash; <strong>it shortcuts.</strong></p>
       </div>
     </div>
   </div>
@@ -620,7 +627,7 @@ if (!window.location.hash) {
       <div class="approach-step">
         <div class="step-num">02</div>
         <h3>Hybrid Retrieval + Reasoning Loop</h3>
-        <p>Most AI systems stop at retrieval; others rely on black-box machine learning. Neither is sufficient. LLMs also cannot do <strong>constraint-based reasoning</strong> &mdash; they never pre-validate the possibility space before generating. Every output draws from the full token distribution. A formal knowledge architecture pre-validates what is even possible before any reasoning begins, turning silent failures into explicit ones.</p>
+        <p>Most AI systems stop at retrieval; others still rely on black-box machine learning. Neither LLM nor symbolic reasoning alone is sufficient. I design hybrid approaches where clinical knowledge and AI inform each other continuously.</p>
       </div>
       <div class="approach-step">
         <div class="step-num">03</div>
