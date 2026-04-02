@@ -169,6 +169,7 @@ if (!window.location.hash) {
   .problem-card:nth-child(2) .card-icon { background: #FEF3C7; }
   .problem-card:nth-child(3) .card-icon { background: #DBEAFE; }
   .problem-card:nth-child(4) .card-icon { background: #E0E7FF; }
+  .problem-card:nth-child(5) .card-icon { background: #D1FAE5; }
   .problem-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
   .problem-card p { font-size: 0.88rem; color: var(--color-text-muted); line-height: 1.65; }
 
@@ -552,6 +553,11 @@ if (!window.location.hash) {
         <h3>The Explainability Gap</h3>
         <p>AI can show a reasoning path, but domain experts need to verify, explore, compare, and generate hypotheses &mdash; not just read explanations. That&rsquo;s what it takes to keep the AI accountable.</p>
       </div>
+      <div class="problem-card" style="grid-column: 1 / -1;">
+        <div class="card-icon">&#x2696;&#xFE0F;</div>
+        <h3>Logical Rule Misapplication</h3>
+        <p>The correct rule is retrieved and correctly named &mdash; but the formal evaluation of its logic still fails. A real example: Eliquis dose reduction requires exactly 2 of 3 criteria (age &ge;80, creatinine &ge;1.5, weight &le;60&thinsp;kg). An LLM can retrieve the rule yet still fail to evaluate the threshold correctly over a specific patient&rsquo;s values. This is distinct from semantic drift (the concept didn&rsquo;t change) and from hallucination (the rule exists). It&rsquo;s a reasoning failure on correctly retrieved, correctly identified information &mdash; and it&rsquo;s exactly the class of failures a formal logic reasoner directly addresses.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -614,7 +620,7 @@ if (!window.location.hash) {
       <div class="approach-step">
         <div class="step-num">02</div>
         <h3>Hybrid Retrieval + Reasoning Loop</h3>
-        <p>Most AI systems stop at retrieval; others still rely on black-box machine learning. Neither LLM nor symbolic reasoning alone is sufficient. I design hybrid approaches where clinical knowledge and AI inform each other continuously.</p>
+        <p>Most AI systems stop at retrieval; others rely on black-box machine learning. Neither is sufficient. LLMs also cannot do <strong>constraint-based reasoning</strong> &mdash; they never pre-validate the possibility space before generating. Every output draws from the full token distribution. A formal knowledge architecture pre-validates what is even possible before any reasoning begins, turning silent failures into explicit ones.</p>
       </div>
       <div class="approach-step">
         <div class="step-num">03</div>
