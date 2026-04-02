@@ -556,7 +556,7 @@ if (!window.location.hash) {
       <div class="problem-card" style="grid-column: 1 / -1;">
         <div class="card-icon">&#x2696;&#xFE0F;</div>
         <h3>Logical Rule Misapplication</h3>
-        <p>The correct rule is retrieved and correctly named &mdash; but the formal evaluation of its logic still fails. A real example: Eliquis dose reduction requires exactly 2 of 3 criteria (age &ge;80, creatinine &ge;1.5, weight &le;60&thinsp;kg). An LLM can retrieve the rule yet still fail to evaluate the threshold correctly over a specific patient&rsquo;s values. This is distinct from semantic drift (the concept didn&rsquo;t change) and from hallucination (the rule exists). It&rsquo;s a reasoning failure on correctly retrieved, correctly identified information &mdash; and it&rsquo;s exactly the class of failures a formal logic reasoner directly addresses.</p>
+        <p>Even when what the system reasons over is correct &mdash; the knowledge holds, the source is right, the concept didn&rsquo;t drift &mdash; <em>how</em> it reasons over that knowledge still cannot be compromised. Clinical medicine&rsquo;s conditional logic is among the densest of any domain (IF&thinsp;/&thinsp;AND&thinsp;/&thinsp;OR&thinsp;/&thinsp;UNLESS&thinsp;/&thinsp;EXCEPT&thinsp;/&thinsp;satisfying more than N&thinsp;out of&thinsp;M criteria). When a clinical AI cannot hold that logic, it doesn&rsquo;t fail &mdash; it shortcuts.</p>
       </div>
     </div>
   </div>
