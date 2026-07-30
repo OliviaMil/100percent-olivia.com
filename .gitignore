@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+# Claude Code local project files
+.claude/
+# private working docs (keep local only)
+CONTENT-CRITIQUE.md
+CV-AND-LINKEDIN.md
+# local version backups & build scratch (keep local only)
+index-v*.html
+index-rebuilt.html
+extracted_page.html

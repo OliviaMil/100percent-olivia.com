@@ -80,7 +80,7 @@ if (!window.location.hash) {
   }
   nav .nav-links { display: flex; gap: 1.5rem; align-items: center; }
   nav .nav-links a {
-    color: var(--color-hero-muted); text-decoration: none;
+    color: var(--color-hero-text); text-decoration: none;
     font-size: 0.875rem; font-weight: 400; transition: color 0.2s;
   }
   nav .nav-links a:hover { color: var(--color-hero-text); }
@@ -305,6 +305,7 @@ if (!window.location.hash) {
   .community-video {
     border-radius: 12px; overflow: hidden;
     border: 1px solid var(--color-border); background: #000;
+    display: flex; flex-direction: column;
   }
   .community-video iframe {
     width: 100%; aspect-ratio: 16/9; display: block; border: none;
@@ -312,6 +313,7 @@ if (!window.location.hash) {
   .community-video .video-caption {
     padding: 1rem 1.25rem; background: var(--color-bg);
     border-top: 1px solid var(--color-border);
+    flex: 1 1 auto;
   }
   .community-video .video-caption h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 0.3rem; }
   .community-video .video-caption p { font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.6; }
@@ -509,15 +511,11 @@ if (!window.location.hash) {
       I design and ship knowledge architecture and evaluation frameworks at enterprise scale &mdash; catching where AI drifts from domain truth, working across healthcare stakeholders, engineering teams, and end users.
     </p>
     <div class="hero-credentials">
-      <span>Clinical Knowledge Architecture</span>
-      <span>LLM Grounding &amp; Evaluation</span>
       <span>Neuro-Symbolic AI for Healthcare</span>
       <span>Knowledge Graphs &amp; Formal Reasoning</span>
-      <span>MCP Tool Building</span>
       <span>Enterprise-grade Production</span>
-      <span>Transparent AI Pipeline</span>
-      <span>Clinical Background (MD)</span>
-      <span>National Library of Medicine Informatics Fellow</span>
+      <span>Explainable &amp; auditable AI Pipeline</span>
+      <span>National Library of Medicine Informatics Fellowship Trained</span>
       <span>Clinical AI Safety</span>
     </div>
   </div>
@@ -533,28 +531,23 @@ if (!window.location.hash) {
     </p>
     <div class="problem-grid">
       <div class="problem-card">
-        <div class="card-icon">&#x1F50D;</div>
         <h3>When Retrieval Misleads</h3>
         <p>The model finds a concept that looks like a match based on word overlap, but means something clinically different. Keyword similarity masks semantic divergence.</p>
       </div>
       <div class="problem-card">
-        <div class="card-icon">&#x1F300;</div>
         <h3>Semantic Drift</h3>
         <p>The answer starts in the right clinical territory but gradually shifts meaning through plausible-sounding steps &mdash; ending somewhere subtly wrong.</p>
         <a href="https://medium.com/@olivia.milgrom/a-semantic-drift-perfect-storm-in-medical-ai-f0e9cd1b0f03" target="_blank" rel="noopener" style="display: inline-block; margin-top: 0.75rem; font-size: 0.82rem; font-weight: 500; color: var(--color-accent); text-decoration: none;">Read my case study &rarr;</a>
       </div>
       <div class="problem-card">
-        <div class="card-icon">&#x1F4AD;</div>
         <h3>Hallucination</h3>
         <p>The model generates clinical codes, classifications, or relationships that don't exist. Without a formal knowledge base to check against, fabrications are invisible.</p>
       </div>
       <div class="problem-card">
-        <div class="card-icon">&#x1F9E9;</div>
         <h3>The Explainability Gap</h3>
         <p>AI can show a reasoning path, but domain experts need to verify, explore, compare, and generate hypotheses &mdash; not just read explanations. That&rsquo;s what it takes to keep the AI accountable.</p>
       </div>
       <div class="problem-card" style="grid-column: 1 / -1;">
-        <div class="card-icon">&#x2696;&#xFE0F;</div>
         <h3>Logical Rule Misapplication</h3>
         <p>Even when what the system reasons over is correct &mdash; the knowledge holds, the source is right, the concept didn&rsquo;t drift &mdash; <em>how</em> it reasons over that knowledge still cannot be compromised.</p>
         <p style="margin-top: 0.65rem;">Clinical medicine&rsquo;s conditional logic is among the densest of any domain:</p>
@@ -702,7 +695,7 @@ if (!window.location.hash) {
         </div>
         <h3>Knowledge Graph for Propositional Reasoning: A Multi-Case Study of CCSR (Clinical Classifications Software Refined) for ICD-10-PCS (Procedure Coding System)</h3>
         <p>When classification rules (inclusion criteria) quietly break, how do you find out? Using knowledge graph reasoning to surface three types of logical inconsistency &mdash; the kind conventional methods miss.</p>
-        <a href="P66-Milgrom-AMIA2025-KG-Propositional-Reasoning.pdf" target="_blank" rel="noopener" class="read-link" style="text-decoration: none;">View poster &rarr;</a>
+        <a href="assets/P66-Milgrom-AMIA2025-KG-Propositional-Reasoning.pdf" target="_blank" rel="noopener" class="read-link" style="text-decoration: none;">View poster &rarr;</a>
       </div>
       <div class="writing-card" style="cursor: default;">
         <img src="assets/images/photo-amia.jpg" alt="Olivia Milgrom presenting at AMIA 2025 Annual Symposium" class="writing-card-photo" />
