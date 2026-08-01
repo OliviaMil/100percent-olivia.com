@@ -733,9 +733,11 @@ if (!window.location.hash) {
           <img src="assets/images/bureaucracy-cover.jpg" alt="Felt-art illustration: an overwhelmed human clerk at the &lsquo;Department of Bureaucracy&rsquo; surrounded by record drawers" style="width: 100%; border-radius: 8px; display: block;" />
           <img src="assets/images/ai-clerk.jpg" alt="Felt-art illustration: an AI clerk rapidly stamping and misfiling records at the Department of Bureaucracy" style="width: 100%; border-radius: 8px; display: block;" />
         </div>
-        <video controls muted loop playsinline preload="metadata" style="width: 100%; border-radius: 8px; margin-top: 0.75rem; display: block;">
-          <source src="assets/video/bureaucracy-article.mp4" type="video/mp4">
-        </video>
+        <div style="max-width: 480px; margin: 0.75rem auto 0; aspect-ratio: 2 / 1; border-radius: 8px; overflow: hidden;">
+          <video controls muted loop playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;">
+            <source src="assets/video/bureaucracy-article.mp4" type="video/mp4">
+          </video>
+        </div>
         <div style="display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap;">
           <a href="https://medium.com/@olivia.milgrom/bureaucracy-solved-information-retrieval-ai-reopened-it-bebc56aafa20" target="_blank" rel="noopener" class="read-link" style="text-decoration: none;">Read on Medium &rarr;</a>
           <a href="https://100percentolivia.substack.com/p/bureaucracy-solved-information-retrieval" target="_blank" rel="noopener" class="read-link" style="text-decoration: none;">Read on Substack &rarr;</a>
