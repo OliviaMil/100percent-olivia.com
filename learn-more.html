@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RL3PQB3LN1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RL3PQB3LN1');
+</script>
+<meta name="color-scheme" content="only light">
+<script>
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+if (!window.location.hash) {
+  window.scrollTo(0, 0);
+  document.addEventListener('DOMContentLoaded', function() { window.scrollTo(0, 0); });
+  window.addEventListener('load', function() {
+    window.scrollTo(0, 0);
+    setTimeout(function() { window.scrollTo(0, 0); }, 50);
+    setTimeout(function() { window.scrollTo(0, 0); }, 150);
+    setTimeout(function() { window.scrollTo(0, 0); }, 500);
+  });
+}
+</script>
+<title>Learn more &mdash; &ldquo;Olivia&rdquo; Z. Milgrom</title>
+<meta name="description" content="Where clinical AI breaks, how &quot;Olivia&quot; Z. Milgrom, MD MPH builds it to hold, and beyond the work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-links">
+      <a href="index.html#voice">Public Voice</a>
+      <a href="index.html#about">Philosophy</a>
+      <a href="index.html#path">My Path</a>
+      <a href="index.html#writing">Talks &amp; Writing</a>
+      <a href="#contact">Contact</a>
+      <a href="learn-more.html" class="nav-more active">Learn more</a>
+    </div>
+    <a href="index.html" class="nav-brand">
+      <span class="nav-name">&ldquo;Olivia&rdquo; Z. Milgrom<span class="nav-cred">MD, MPH</span></span>
+      <img src="assets/images/logo-100-olivia.png" alt="100% Olivia">
+    </a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="section-inner">
+    <span class="section-label">Learn more</span>
+    <h1>The thinking behind the <em>work</em></h1>
+    <p>The failure modes I keep seeing, the architecture I design against them &mdash; and the same question, brought to the next generation.</p>
+    <div class="page-jump"><a href="#problem">01 &middot; Where clinical AI breaks</a><a href="#approach">02 &middot; How I build it to hold</a><a href="#community">03 &middot; Beyond the work</a></div>
+  </div>
+</section>
+
+<!-- The Problem -->
+<section class="problem-section" id="problem">
+  <div class="section-inner">
+    <span class="section-label">01 &middot; The Problem</span>
+    <div class="section-title">Where clinical AI breaks</div>
+    <p class="section-subtitle">
+      LLMs are powerful, but in high-stakes areas like healthcare, sounding right isn&rsquo;t the same as being right &mdash;
+      and even when AI can explain itself, that doesn&rsquo;t mean experts can verify it.
+    </p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="step-num">01</div>
+        <h3>When Retrieval Misleads</h3>
+        <p>The model finds a concept that looks like a match based on word overlap, but means something clinically different. Keyword similarity masks semantic divergence.</p>
+      </div>
+      <div class="problem-card">
+        <div class="step-num">02</div>
+        <h3>Semantic Drift</h3>
+        <p>The answer starts in the right clinical territory but gradually shifts meaning through plausible-sounding steps &mdash; ending somewhere subtly wrong.</p>
+        <a href="https://medium.com/@olivia.milgrom/a-semantic-drift-perfect-storm-in-medical-ai-f0e9cd1b0f03" target="_blank" rel="noopener" style="display: inline-block; margin-top: 0.75rem; font-size: 0.82rem; font-weight: 500; color: var(--color-accent); text-decoration: none;">Read my case study &rarr;</a>
+      </div>
+      <div class="problem-card">
+        <div class="step-num">03</div>
+        <h3>Hallucination</h3>
+        <p>The model generates clinical codes, classifications, or relationships that don't exist. Without a formal knowledge base to check against, fabrications are invisible.</p>
+      </div>
+      <div class="problem-card">
+        <div class="step-num">04</div>
+        <h3>The Explainability Gap</h3>
+        <p>AI can show a reasoning path, but domain experts need to verify, explore, compare, and generate hypotheses &mdash; not just read explanations. That&rsquo;s what it takes to keep the AI accountable.</p>
+      </div>
+      <div class="problem-card" style="grid-column: 1 / -1;">
+        <div class="step-num">05</div>
+        <h3>Logical Rule Misapplication</h3>
+        <p>Even when what the system reasons over is correct &mdash; the knowledge holds, the source is right, the concept didn&rsquo;t drift &mdash; <em>how</em> it reasons over that knowledge still cannot be compromised.</p>
+        <p style="margin-top: 0.65rem;">Clinical medicine&rsquo;s conditional logic is among the densest of any domain:</p>
+        <ul style="margin: 0.5rem 0 0.65rem 1.1rem; font-size: 0.88rem; color: var(--color-text-muted); line-height: 1.9;">
+          <li><strong>IF &nbsp;/&nbsp; AND &nbsp;/&nbsp; OR</strong></li>
+          <li><strong>UNLESS &nbsp;/&nbsp; EXCEPT</strong></li>
+          <li><strong>Satisfying more than N out of M criteria</strong></li>
+        </ul>
+        <p>When a clinical AI cannot hold that logic, it doesn&rsquo;t fail &mdash; <strong>it shortcuts.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Baby Blues Example — PRESERVED FOR FUTURE USE (pending submission)
+<section class="example-section">
+  <div class="section-inner">
+    <div class="example-box">
+      <h3>One phrase, all three failures: "Baby blues"</h3>
+      <p>When an AI system processes the clinical concept "Baby blues" (postpartum mood changes,
+        ICD-10-CM code F53.0), all three failure modes appear at once — making this a useful litmus
+        test for any clinical AI system.</p>
+      <div class="example-failures">
+        <div class="example-failure failure-surface"><h4>Surface-Level</h4><p>Lexical search returns "Blue baby" — cyanotic heart disease in newborns. Word overlap, completely wrong clinical meaning.</p></div>
+        <div class="example-failure failure-drift"><h4>Semantic Drift</h4><p>The LLM starts with postpartum mood, drifts through "depression," and lands on major depressive disorder — a different condition requiring different treatment.</p></div>
+        <div class="example-failure failure-hallucination"><h4>Hallucination</h4><p>The model invents plausible-sounding but nonexistent ICD-10 codes, or fabricates clinical relationships not in any knowledge base.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- Approach -->
+<section class="approach-section" id="approach">
+  <div class="section-inner">
+    <span class="section-label">02 &middot; Technical Approach</span>
+    <div class="section-title">How I build it to hold</div>
+    <p class="section-subtitle">
+      <strong style="color: var(--color-text);">Bidirectional grounding &mdash; reasoning built in, not patched on.</strong> Designing systems where clinical knowledge and AI inform each other continuously &mdash; not as a pipeline, but as a layered architecture.
+    </p>
+
+    <!-- Architecture Diagram -->
+    <div class="arch-diagram">
+      <div class="arch-flow">
+        <div class="arch-node arch-node-human">Human</div>
+        <div class="arch-arrow">&harr;</div>
+        <div class="arch-node arch-node-llm">LLM<div class="arch-node-sub">semantic interpreter<br>+ hypothesis generator</div></div>
+        <div class="arch-arrow">&harr;</div>
+        <div class="arch-node arch-node-knowledge">
+          <div style="font-size: 0.82rem; font-weight: 600; margin-bottom: 0.4rem;">Knowledge Layers</div>
+          <div class="arch-klayer"><span class="kl-q">How the domain is defined</span> <span class="kl-sep">&middot;</span> Ontology</div>
+          <div class="arch-klayer"><span class="kl-q">How things relate</span> <span class="kl-sep">&middot;</span> Knowledge Graph</div>
+          <div class="arch-klayer"><span class="kl-q">What must hold</span> <span class="kl-sep">&middot;</span> Rules &amp; Constraints</div>
+        </div>
+        <div class="arch-arrow">&harr;</div>
+        <div class="arch-node arch-node-reasoner">Reasoning<div class="arch-node-sub">knowledge computation<br>+ verification</div></div>
+        <div class="arch-arrow">&harr;</div>
+        <div class="arch-node arch-node-human">Human<div class="arch-node-sub">visual reasoning<br>+ hypothesis exploration</div></div>
+      </div>
+    </div>
+
+    <!-- Explanatory Steps -->
+    <div class="approach-flow">
+      <div class="approach-step" id="layered-knowledge">
+        <div class="step-num">01</div>
+        <span class="step-tag">Content &amp; Knowledge Engineering</span>
+        <h3>Layered Knowledge Architecture</h3>
+        <p style="margin-bottom: 0.75rem;"><span style="font-style: italic; color: var(--color-text); font-weight: 500;">&lsquo;RAG is dead&rsquo;</span> &mdash; when voices across the industry say this, what they mean is that store-and-retrieve was never enough.</p>
+        <p>Even knowledge graphs &mdash; now the fastest-rising trusted context layer for GenAI in enterprise AI (according to <a href="https://www.gartner.com/en/articles/hype-cycle-for-artificial-intelligence" target="_blank" rel="noopener" style="color: var(--color-accent); text-decoration: underline;">Gartner</a>) &mdash; are only one layer. I specialize in the deeper conceptual infrastructure where clinical logic can be <em>proven</em>, not just looked up.</p>
+        <a href="index.html#amia-2025-poster" style="display: inline-block; margin-top: 0.9rem; font-size: 0.8rem; font-weight: 500; color: var(--color-accent); text-decoration: none;">In practice: AMIA 2025 poster on knowledge-graph propositional reasoning &rarr;</a>
+      </div>
+      <div class="approach-step" id="hybrid-reasoning">
+        <div class="step-num">02</div>
+        <h3>Hybrid Retrieval + Reasoning Loop</h3>
+        <p>Most AI systems stop at retrieval; others still rely on black-box machine learning. Neither LLM nor symbolic reasoning alone is sufficient. I design hybrid approaches where clinical knowledge and AI inform each other continuously.</p>
+        <a href="index.html#amia-2025-podium" style="display: inline-block; margin-top: 0.9rem; font-size: 0.8rem; font-weight: 500; color: var(--color-accent); text-decoration: none;">In practice: AMIA 2025 podium talk on hybrid retrieval and reasoning &rarr;</a>
+      </div>
+      <div class="approach-step">
+        <div class="step-num">03</div>
+        <span class="step-tag">Enterprise Deployment &amp; Governance</span>
+        <h3>Automatic Evaluation at Scale</h3>
+        <p>Evaluation as governance: every answer traced back to its contexts and original intent &mdash; built to be:</p>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.6rem;">
+          <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 4px; background: #EFF6FF; color: #2563EB;">Configurable</span>
+          <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 4px; background: #EFF6FF; color: #2563EB;">Auditable</span>
+          <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 4px; background: #EFF6FF; color: #2563EB;">Explainable</span>
+          <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 4px; background: #EFF6FF; color: #2563EB;">Enterprise-scale</span>
+          <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 4px; background: #EFF6FF; color: #2563EB;">Governable</span>
+        </div>
+        <a href="index.html#dci-2026" style="display: inline-block; margin-top: 0.9rem; font-size: 0.8rem; font-weight: 500; color: var(--color-accent); text-decoration: none;">In practice: Harvard DCI finalist talk on LLM-as-a-judge for clinical AI governance &rarr;</a>
+        <!-- PRESERVED DETAIL: AI evaluation tools deployed via MCP (Model Context Protocol — an open standard for connecting AI models to external knowledge and tools). -->
+      </div>
+      <div class="approach-step" id="visual-reasoning" style="background: linear-gradient(135deg, #FAFAF8 0%, #EFF6FF 100%); border: 1.5px solid #bfd4f2;">
+        <div class="step-num">04</div>
+        <h3><span style="background: linear-gradient(135deg, #60A5FA, #A78BFA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Visual</span> Reasoning &amp; Sensemaking</h3>
+        <p style="font-style: italic; color: var(--color-text); font-weight: 500; margin-bottom: 0.6rem;">Explainability, taken even to its visual form.</p>
+        <p style="margin-bottom: 0.8rem;">A paradigm shift in how auditing happens &mdash; empowering domain experts to go from open-ended investigation to focused hypotheses.</p>
+        <div style="display: flex; gap: 0.5rem; margin-top: 0.4rem; flex-wrap: wrap;">
+          <span style="font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 12px; background: rgba(96,165,250,0.12); color: #3B82F6; font-weight: 500;">Surface inconsistencies</span>
+          <span style="font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 12px; background: rgba(167,139,250,0.12); color: #7C3AED; font-weight: 500;">Expose assumptions</span>
+          <span style="font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 12px; background: rgba(96,165,250,0.12); color: #3B82F6; font-weight: 500;">Explore hypotheses</span>
+        </div>
+        <a href="index.html#amia-2026" style="display: inline-block; margin-top: 0.9rem; font-size: 0.8rem; font-weight: 500; color: var(--color-accent); text-decoration: none;">In practice: AMIA 2026 talk on visual auditing of classification logic &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Beyond the Work -->
+<section class="community-section" id="community">
+  <div class="section-inner">
+    <span class="section-label">03 &middot; Beyond the Work</span>
+    <div class="section-title">Real or AI? Teaching kids to tell the difference</div>
+    <p class="section-subtitle" style="margin-bottom: 0;">In art and in AI, the same question applies. I wrote a song, made a music video, and brought a dancing robot to an elementary school festival to ask it.</p>
+
+    <!-- STEAM Activity Slides (first) -->
+    <div class="steam-slides">
+      <!-- Slide 1: Title Slide -->
+      <div class="steam-slide steam-slide-1">
+        <div class="corner-blob blob-tl"></div>
+        <div class="corner-blob blob-tr"></div>
+        <div class="corner-blob blob-bl"></div>
+        <div class="corner-blob blob-br"></div>
+        <div class="slide-robot">&#x1F916;</div>
+        <h3>AI Dance Room</h3>
+        <div class="slide-subtitle">Real or Fake Animals? You Guess!</div>
+        <div class="slide-icons">&#x1F43E; &#x1F437; &#x1F54A; &#x1F43E; &#x1F437;</div>
+      </div>
+
+      <!-- Slide 2: 3 Rounds + Bonus Quiz -->
+      <div class="steam-slide steam-slide-2">
+        <div class="quiz-header">&#x1F50D; You Are AI Detectives!</div>
+
+        <!-- Three Rounds -->
+        <div class="rounds-section">
+          <h4>&#x25B6; Play &lsquo;I Need to Zone Out (and Dance Now)&rsquo; &mdash; Real or Fake?</h4>
+          <div class="rounds-grid">
+            <div class="round-card">
+              <span class="round-emoji">&#x1F440;</span>
+              <span class="round-label">Round 1</span>
+              <span class="round-time">0:00 &ndash; 0:30</span>
+              <span class="round-q">Real or fake animals?</span>
+            </div>
+            <div class="round-card">
+              <span class="round-emoji">&#x1F440;</span>
+              <span class="round-label">Round 2</span>
+              <span class="round-time">0:30 &ndash; 1:00</span>
+              <span class="round-q">Real or fake animals?</span>
+            </div>
+            <div class="round-card">
+              <span class="round-emoji">&#x1F440;</span>
+              <span class="round-label">Round 3</span>
+              <span class="round-time">1:00 &ndash; 1:30</span>
+              <span class="round-q">Real or fake animals?</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bonus: Who Sang It? -->
+        <div class="quiz-board">
+          <h4>&#x1F3A4; Bonus: Who Sang This Song?</h4>
+          <div class="quiz-options">
+            <div class="quiz-option">A) Olivia Milgrom - me</div>
+            <div class="quiz-option">D) The principal from your elementary school</div>
+            <div class="quiz-option">B) AI / Robot</div>
+            <div class="quiz-option">E) Rumi from K-pop Demon Hunter</div>
+            <div class="quiz-option">C) Taylor Swift</div>
+            <div class="quiz-option">F) The pelican/bird in the video</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Videos -->
+    <div class="community-grid">
+      <div class="community-video">
+        <iframe src="https://www.youtube.com/embed/BuSH_kAuNek" title="I need to zone out (and dance now) - AI Song" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <div class="video-caption">
+          <h4>&ldquo;I Need to Zone Out (and Dance Now)&rdquo;</h4>
+          <p>I made this song and music video &mdash; and played it
+          at an elementary school festival where kids tried the guessing game above.
+          &#x25B6; Press play the music video and try the guessing game yourself!</p>
+        </div>
+      </div>
+      <div class="community-video">
+        <iframe src="https://www.youtube.com/embed/_xEVn1Y7H2Y" title="Robot needs to zoom out and dance now" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <div class="video-caption">
+          <h4>Robot Dance Performance</h4>
+          <p>If you have guessed correctly, a real robot would dance to the song &mdash;
+          showing kids how AI, music, and robotics connect.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <span class="section-label">Get in Touch</span>
+    <div class="section-title">Let&rsquo;s talk about trustworthy clinical AI</div>
+    <p class="section-subtitle">
+      Whether you're working on clinical AI, exploring how knowledge representation
+      can improve LLM reliability, or just curious about this space &mdash;
+      I'm always happy to connect and exchange ideas.
+    </p>
+    <div class="contact-links">
+      <a href="#contact" class="btn-primary" id="email-reveal" onclick="event.preventDefault();var a='contact',b='100percent-olivia',c='com';var addr=a+'@'+b+'.'+c;this.href='mail'+'to:'+addr;this.textContent=addr;this.onclick=null;this.style.cursor='pointer';" style="cursor: pointer; text-decoration: none;">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Click to reveal email
+      </a>
+      <a href="https://www.linkedin.com/in/olivia-milgrom" class="btn-secondary" target="_blank" rel="noopener">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Olivia Z. Milgrom. All rights reserved.
+  <div style="margin-top: 0.4rem; font-size: 0.72rem; opacity: 0.7;">This is a personal website. Views expressed here are my own.</div>
+</footer>
+
+</body>
+</html>
