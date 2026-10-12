@@ -2,6 +2,7 @@
  * Invisible-ink reveal: words marked .ink start invisible and develop under a
  * hair dryer, like heat-activated ink (pale -> lemon -> amber -> final colour).
  * - Drag the parked dryer (.dryer-park) over the words (mouse or finger).
+ * - Phones: swiping a finger sideways over the words also works as the dryer.
  * - Mouse/pen: hovering a word also turns the cursor into the dryer.
  * - Tap a word, or press Enter on the parked dryer, and it sweeps by itself.
  * - Nobody tries it within a few seconds: the dryer sweeps once on its own.
@@ -366,6 +367,9 @@
       document.documentElement.classList.remove('ink-dragging');
       finishLater(4000);
     }
+    // iPhone Safari: stop the page from scrolling under the held dryer, or it cancels the drag
+    park.addEventListener('touchstart', function (e) { e.preventDefault(); }, { passive: false });
+    park.addEventListener('touchmove', function (e) { e.preventDefault(); }, { passive: false });
     park.addEventListener('pointerup', drop);
     park.addEventListener('pointercancel', drop);
     park.addEventListener('keydown', function (e) {
@@ -375,6 +379,31 @@
       else enqueue(manual);
     });
   });
+
+  // Phones: a finger swiped sideways across the words dries them, the dryer under the fingertip
+  var finger = null;
+  manual.forEach(function (item) {
+    item.el.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'touch' || mode) return;
+      finger = e.pointerId;
+      mode = 'finger';
+      hot = { x: e.clientX, y: e.clientY };
+      clearTimeout(finishTimer);
+      kick();
+    });
+  });
+  document.addEventListener('pointermove', function (e) {
+    if (mode === 'finger' && e.pointerId === finger) hot = { x: e.clientX, y: e.clientY };
+  }, { passive: true });
+  function lift(e) {
+    if (mode !== 'finger' || e.pointerId !== finger) return;
+    mode = null;
+    hot = null;
+    finger = null;
+    finishLater(4000);
+  }
+  document.addEventListener('pointerup', lift);
+  document.addEventListener('pointercancel', lift);
 
   // Tap or click a hidden word: the dryer does that word
   items.forEach(function (item) {
