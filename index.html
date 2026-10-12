@@ -37,6 +37,7 @@ if (!window.location.hash) {
 <nav>
   <div class="nav-inner">
     <div class="nav-links">
+      <a href="#bio">Bio</a>
       <a href="#voice">Public Voice</a>
       <a href="#about">Philosophy</a>
       <a href="#path">My Path</a>
@@ -52,17 +53,20 @@ if (!window.location.hash) {
 </nav>
 
 <!-- Hero -->
-<section class="hero">
+<section class="hero" id="bio">
   <div class="hero-inner hero-v2">
     <div class="hero-top">
       <div class="hero-id">
         <div class="hero-portrait">
           <img src="assets/images/photo-profile.jpg" alt="&ldquo;Olivia&rdquo; Z. Milgrom" />
         </div>
-        <p class="hero-tagline">Physician-informaticist, builder, and innovator</p>
+        <div class="hero-id-text">
+          <p class="hero-tagline">Physician-informaticist, builder, and innovator</p>
+          <a class="hero-alias" href="#roots">a.k.a. the <span>Mad Calligrapher</span> <span class="hero-alias-arrow" aria-hidden="true">&darr;</span></a>
+        </div>
       </div>
       <div class="hero-headline">
-        <div class="hero-name">&ldquo;Olivia&rdquo; Z. Milgrom, MD, MPH</div>
+        <div class="hero-name">&ldquo;Olivia&rdquo; Zheng Milgrom, MD, MPH</div>
         <h1>Bringing <em>clinical rigor</em> into AI systems through knowledge architecture &amp; <em>reasoning</em></h1>
       </div>
     </div>
@@ -80,7 +84,17 @@ if (!window.location.hash) {
         <span>Customer-facing Enterprise Solution</span>
       </div>
     </div>
-    <div class="hero-pillars"><span>Explainable</span><span>Governable</span><span>Scalable</span><span>Configurable</span></div>
+    <div class="hero-keys ink-group" data-ink="dark">
+      <div class="dryer-park" role="button" tabindex="0" aria-label="Hair dryer: drag it over the words to reveal them, or press Enter">
+        <span class="dryer-bubble">Drag me over the words</span>
+      </div>
+      <ul class="keys-list">
+        <li><span class="ink">Explainable</span></li>
+        <li><span class="ink">Governable</span></li>
+        <li><span class="ink">Scalable</span></li>
+        <li><span class="ink">Configurable</span></li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -105,7 +119,7 @@ if (!window.location.hash) {
 <!-- Expertise & Philosophy -->
 <section class="about-section" id="about">
   <div class="section-inner">
-    <div class="about-cycle">
+    <div class="about-cycle" id="expertise">
       <div class="about-cycle-text">
         <span class="section-label">Where the expertise comes from</span>
         <p class="about-quote">The full evidence-based medicine cycle &mdash; <em>lived, practiced,</em> and now built into AI.</p>
@@ -114,11 +128,12 @@ if (!window.location.hash) {
     </div>
     <div class="about-philosophy">
       <span class="section-label">Philosophy</span>
-      <div class="about-title">Trust has to be built where the <em>knowledge</em> lives.</div>
+      <div class="about-title">Trust has to be built where the <em>domain knowledge</em> lives.</div>
       <p class="about-kicker">Rooted in medicine &mdash; not a hammer looking for nails.</p>
       <p class="about-lead">
         My approach to clinical AI grows out of my history across the entire evidence-based medicine lifecycle.
-        I know exactly where clinical knowledge breaks down &mdash; and I&rsquo;m driven to reduce its burden, <strong>safely</strong>.
+        I know exactly where clinical knowledge breaks down &mdash; and I&rsquo;m driven to lift <strong>the unbearable burden of the clinical knowledge explosion</strong>
+        from the people who carry it every day.
       </p>
     </div>
   </div>
@@ -130,37 +145,37 @@ if (!window.location.hash) {
     <span class="section-label">My Path</span>
     <div class="section-title">My version of an unconventional path</div>
     <div class="path">
-      <div class="path-beat path-art">
-        <div><span class="path-tag">Roots</span><div class="path-big">Proofs and pictures.</div></div>
-        <p>I grew up competitive in <mark class="hl">math and STEM</mark>, and in love with <mark class="hl">art</mark> &mdash; drawing, calligraphy, the stage. What tied them together was a love of <mark class="hl">innovation</mark>. Once, I brought live calligraphy onto the stage in a chemistry magic show I designed &mdash; <span class="ink">where a hair dryer did the writing.</span></p>
+      <div class="path-beat path-art" id="roots">
+        <div><span class="path-tag">Roots</span><div class="path-big">Proofs and arts.</div></div>
+        <p>I grew up competitive in <mark class="hl">math and STEM</mark>, and in love with <mark class="hl">art</mark> &mdash; drawing, calligraphy, the stage. What tied them together was a love of <mark class="hl">innovation</mark>. Once, I brought live Eastern Asian calligraphy onto the stage in a chemistry magic show I designed &mdash; <span class="ink-note">where a hair dryer did the writing.</span></p>
+        <figure class="path-photo show-video">
+          <div class="show-frame">
+            <video autoplay muted loop playsinline preload="metadata" poster="assets/images/mad-calligrapher-show-poster.jpg" aria-label="A hand sweeps a hair dryer over a blank canvas, and &ldquo;Mad Calligrapher Show&rdquo; appears in blue calligraphy">
+              <source src="assets/video/mad-calligrapher-show.mp4" type="video/mp4">
+            </video>
+            <button type="button" class="show-sound" aria-pressed="false">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path class="wave" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="mute" d="M16.5 9.5l5 5m0-5l-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span>Sound on</span>
+            </button>
+          </div>
+          <figcaption>Illustration for demonstration only</figcaption>
+        </figure>
       </div>
       <div class="path-beat">
         <div><span class="path-tag">Medicine</span><div class="path-big">Medicine was meaningful enough.</div></div>
-        <p>A proof holds inside a closed world. Medicine mattered more &mdash; and its knowledge drew me in as a <mark class="hl">complex system</mark>: evidence that keeps evolving, exceptions that change everything, logic that rarely stays clean.</p>
+        <p>A proof holds inside a closed world. Medicine mattered more &mdash; and its knowledge operating in an open world drew me in as a <mark class="hl">complex system</mark>: evidence that keeps evolving, exceptions that change everything, logic that rarely stays clean.</p>
       </div>
       <div class="path-beat">
         <div><span class="path-tag">The spark</span><div class="path-big">Then, the boiling point.</div></div>
         <p>As clinical knowledge grew <mark class="hl">faster than anyone could carry it</mark>, the work of Yuval Noah Harari gave me my aha moment &mdash; years before large language models arrived: <strong>AI was going to radically change how medicine is practiced.</strong></p>
       </div>
       <div class="path-beat">
-        <div><span class="path-tag">The choice</span><div class="path-big">Symbolic or neural?</div></div>
-        <p>I didn&rsquo;t guess. I went deep into <mark class="hl">health informatics</mark> and <mark class="hl">hardcore explainable AI</mark> &mdash; and chose the <strong>symbolic</strong> path.</p>
-      </div>
-      <div class="path-beat">
         <div><span class="path-tag">Today</span><div class="path-big">Now: <em>neurosymbolic.</em></div></div>
-        <p>I come from the <mark class="hl">full evidence-based medicine cycle</mark> &mdash; lived and practiced &mdash; so I build what it takes to guardrail medicine&rsquo;s safety and rigor: logic and language models, each keeping the other honest &mdash; <mark class="hl">in production</mark>, not just in demos.</p>
-      </div>
-      <div class="path-beat">
-        <div><span class="path-tag">The drive</span><div class="path-big">Undaunted by complexity.</div></div>
-        <p>I walked into clinical medicine and formal reasoning because they matter &mdash; never intimidated by how complicated they are. And I&rsquo;m driven to lift <mark class="hl">the unbearable burden of the clinical knowledge explosion</mark> from the people who carry it every day.</p>
+        <p>I didn&rsquo;t guess at the solution; I went into <mark class="hl">health informatics</mark> and the <mark class="hl">neurosymbolic</mark> path. Having lived, practiced, and implemented the <mark class="hl">full evidence-based medicine cycle</mark>, I now build the guardrails it demands: logic and language models keeping each other honest <mark class="hl">in production</mark>.</p>
       </div>
       <div class="path-beat path-art">
-        <div><span class="path-tag">The craft</span><div class="path-big">Complex inside, simple to use.</div></div>
-        <p>This is where art and innovation come back in. <span class="ink">Like calligraphy appearing under a hair dryer,</span> the chemistry stays backstage: I hide the complicated parts behind design that feels simple &mdash; so clinicians and end users get <mark class="hl">rigor they can actually use</mark>.</p>
-        <figure class="path-photo">
-          <img src="assets/images/mad-calligrapher-show.jpg" alt="Illustration: &ldquo;Mad Calligrapher Show&rdquo; written on an easel on stage, revealed with a hair dryer" loading="lazy" />
-          <figcaption>Illustration for demonstration only</figcaption>
-        </figure>
+        <div><span class="path-tag">The craft</span><div class="path-big">Complex inside, <span class="ink" data-ink-auto>simple to use.</span></div></div>
+        <p>I walked into <mark class="hl">clinical medicine and formal reasoning</mark> because they matter &mdash; never intimidated by how complicated they are. <span class="ink-note">Like the calligraphy appearing under a hair dryer,</span> the chemistry stays backstage. I hide <mark class="hl">hardcore informatics</mark> behind intuitive design &mdash; so <mark class="hl">domain experts take the center stage</mark>.</p>
       </div>
     </div>
     <div class="path-coda">
@@ -318,14 +333,30 @@ if (!window.location.hash) {
   <div style="margin-top: 0.4rem; font-size: 0.72rem; opacity: 0.7;">This is a personal website. Views expressed here are my own.</div>
 </footer>
 
+<script src="assets/js/hair-dryer-ink.js"></script>
 <script>
+// Show video: plays muted (browsers block sound until a click); the button turns sound on from the start
 (function () {
-  var inks = document.querySelectorAll('.ink');
-  if (!('IntersectionObserver' in window)) { inks.forEach(function (el) { el.classList.add('is-written'); }); return; }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-written'); io.unobserve(e.target); } });
-  }, { threshold: 0.8 });
-  inks.forEach(function (el) { io.observe(el); });
+  var fig = document.querySelector('.show-video');
+  if (!fig) return;
+  var video = fig.querySelector('video'), btn = fig.querySelector('.show-sound'), label = btn.querySelector('span');
+  function setSound(on) {
+    video.muted = !on;
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    label.textContent = on ? 'Sound off' : 'Sound on';
+  }
+  btn.addEventListener('click', function () {
+    var on = video.muted;
+    if (on) video.currentTime = 0;
+    setSound(on);
+    video.play();
+  });
+  // Scrolled away: go quiet again, so the loop doesn't keep playing sound out of sight
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      if (!entries[0].isIntersecting && !video.muted) setSound(false);
+    }, { threshold: 0 }).observe(video);
+  }
 })();
 </script>
 </body>

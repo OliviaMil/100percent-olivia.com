@@ -862,7 +862,7 @@
     background: linear-gradient(135deg, #60A5FA, #A78BFA);
   }
   .path-beat:nth-child(n+4)::before { background: linear-gradient(135deg, #818CF8, #C084FC); }
-  .path-beat:nth-child(n+6)::before { background: linear-gradient(135deg, #A78BFA, #F472B6); }
+  .path-beat:nth-child(n+5)::before { background: linear-gradient(135deg, #A78BFA, #F472B6); }
   .path-art { background: linear-gradient(90deg, rgba(244,114,182,0.08), rgba(167,139,250,0.06) 60%, transparent); }
   .path-tag { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #7C3AED; margin-bottom: 0.3rem; }
   .path-beat p strong { color: var(--color-text); font-weight: 600; }
@@ -870,12 +870,7 @@
     color: var(--color-text); font-weight: 500; padding: 0 0.1em; border-radius: 2px;
     background: linear-gradient(90deg, rgba(96,165,250,0.28), rgba(167,139,250,0.28)) no-repeat 0 90% / 100% 40%;
   }
-  .ink {
-    font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: 1.08em; color: rgba(127,29,29,0.12);
-    transition: color 1.8s ease, text-shadow 1.8s ease;
-  }
-  .ink.is-written { color: #9F1239; text-shadow: 0 0 14px rgba(244,114,182,0.35); }
-  @media (prefers-reduced-motion: reduce) { .ink { transition: none; color: #9F1239; } }
+  .ink-note { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: 1.08em; color: #9F1239; }
   @media (max-width: 768px) { .path-beat { padding-left: 2.2rem; padding-right: 0.5rem; } }
 
   /* -- Hero v2: one editorial column -- identity row, full-width headline, bio + expertise, pillars -- */
@@ -951,3 +946,133 @@
     .hero-v2 .hero-row { grid-template-columns: 1fr; }
     .hero-v2 .hero-credentials span { font-size: 0.8rem; letter-spacing: -0.005em; }
   }
+
+  /* -- Invisible ink developed by a hair dryer (assets/js/hair-dryer-ink.js) -- */
+  .ink-ready { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .ink-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .ink-word { white-space: nowrap; }
+  .ink-ch { transition: text-shadow 1.2s ease; }
+  .ink-ready:not(.ink-done) .ink-vis {
+    background: linear-gradient(90deg, rgba(251,191,36,0.55) 50%, transparent 0) repeat-x 0 100% / 6px 2px;
+  }
+  .ink-done .ink-ch { text-shadow: 0 0 18px rgba(251,191,36,0.35); }
+
+  .ink-dryer {
+    position: fixed; left: 0; top: 0; z-index: 1000; pointer-events: none; opacity: 0; transition: opacity 0.2s;
+    will-change: transform; filter: drop-shadow(0 6px 10px rgba(76,29,149,0.35));
+  }
+  .ink-dryer svg { display: block; }
+  .ink-dryer.on { opacity: 1; }
+  .ink-dryer.on svg { animation: dryer-buzz 0.07s linear infinite alternate; }
+  .dryer-air path { animation: dryer-air 0.45s linear infinite; }
+  .dryer-air path:nth-child(2) { animation-delay: -0.15s; }
+  .dryer-air path:nth-child(3) { animation-delay: -0.3s; }
+  @keyframes dryer-air { 0% { transform: translateX(-6px); opacity: 0; } 40% { opacity: 1; } 100% { transform: translateX(6px); opacity: 0; } }
+  @keyframes dryer-buzz { to { transform: translate(0.6px, -0.4px); } }
+  .ink-glow {
+    position: fixed; left: 0; top: 0; z-index: 999; width: 90px; height: 90px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(251,146,60,0.32), rgba(251,146,60,0) 70%);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .ink-glow.on { opacity: 1; }
+  html.ink-drying, html.ink-drying * { cursor: none !important; }
+  html.ink-dragging, html.ink-dragging * { cursor: grabbing !important; }
+
+  /* -- Hero: tagline alias linking to My Path / Roots -- */
+  .hero-alias {
+    display: inline-block; margin-top: 0.55rem; font-family: var(--font-display); font-style: italic; font-size: 1.05rem;
+    color: #CBD5E1; text-decoration: none;
+  }
+  .hero-alias span:first-child {
+    color: #F9A8D4; font-weight: 600;
+    background: linear-gradient(90deg, rgba(249,168,212,0.6) 50%, transparent 0) repeat-x 0 100% / 6px 1.5px; padding-bottom: 1px;
+  }
+  .hero-alias-arrow { display: inline-block; margin-left: 0.15em; color: #F9A8D4; transition: transform 0.2s; }
+  .hero-alias:hover .hero-alias-arrow { transform: translateY(3px); }
+  .hero-alias:hover span:first-child { color: #FBCFE8; }
+  .path-beat[id] { scroll-margin-top: 110px; }
+  .path-beat:target { animation: roots-flash 2.6s ease-out; }
+  @keyframes roots-flash { 0%, 30% { box-shadow: 0 0 0 3px rgba(244,114,182,0.55); } 100% { box-shadow: 0 0 0 3px rgba(244,114,182,0); } }
+
+  .hero-alias { white-space: nowrap; }
+  @media (min-width: 769px) and (max-width: 960px) { .hero-alias { font-size: 0.9rem; } }
+  @media (max-width: 768px) {
+    .hero-v2 .hero-id-text { min-width: 0; }
+    .hero-alias { font-size: 0.98rem; margin-top: 0.35rem; }
+  }
+
+  /* -- Hero: the four keywords, developed with the hair dryer parked beside them -- */
+  .hero-keys { display: flex; align-items: center; gap: 1.5rem; margin-top: 1.5rem; padding-top: 2.4rem; }
+  .keys-list {
+    flex: 1; list-style: none; margin: 0; padding: 0;
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1.5rem;
+  }
+  .keys-list li {
+    font-family: var(--font-display); font-size: clamp(1.4rem, 2.6vw, 1.8rem); font-weight: 700; line-height: 1.3;
+    color: var(--color-hero-text); white-space: nowrap;
+  }
+  .keys-list li::before { content: ""; display: inline-block; width: 0.38em; height: 0.38em; border-radius: 50%; margin-right: 0.45em; vertical-align: 0.12em; background: linear-gradient(135deg, #60A5FA, #A78BFA); }
+
+  .dryer-park {
+    position: relative; flex-shrink: 0; width: 84px; height: 64px; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none;
+    border-radius: 14px; outline-offset: 4px;
+  }
+  .dryer-park svg { display: block; animation: park-wiggle 2.4s ease-in-out infinite; transform-origin: 25% 70%; }
+  .dryer-park.is-dragging svg, .dryer-park.is-dragging .dryer-bubble,
+  .dryer-park.is-away svg, .dryer-park.is-away .dryer-bubble { visibility: hidden; }
+  .dryer-park:focus-visible { outline: 2px solid #F9A8D4; }
+  @keyframes park-wiggle { 0%, 70%, 100% { transform: rotate(0); } 78% { transform: rotate(-9deg); } 86% { transform: rotate(6deg); } 93% { transform: rotate(-3deg); } }
+  .dryer-bubble {
+    position: absolute; bottom: calc(100% + 10px); left: -6px; white-space: nowrap; pointer-events: none;
+    padding: 0.35rem 0.7rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; color: #1E1B4B;
+    background: #FDE68A; box-shadow: 0 6px 18px rgba(0,0,0,0.3); animation: bubble-bob 2.4s ease-in-out infinite;
+  }
+  .dryer-bubble::after { content: ""; position: absolute; top: 100%; left: 28px; border: 7px solid transparent; border-top-color: #FDE68A; }
+  @keyframes bubble-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+  /* Once the words are out, the dryer stays for another go, with a quieter hint */
+  .hero-keys.is-revealed .dryer-bubble { animation: none; opacity: 0.85; background: rgba(253,230,138,0.9); }
+  .hero-keys.is-revealed .dryer-park svg { animation-duration: 6s; }
+
+  @media (min-width: 769px) and (max-width: 960px) {
+    .keys-list li { font-size: 1.4rem; }
+    .hero-keys { gap: 1.1rem; }
+  }
+  @media (max-width: 768px) {
+    .hero-keys { display: block; margin-top: 1.75rem; padding-top: 0; }
+    .hero-keys .dryer-park { margin-bottom: 0.75rem; }
+    .dryer-bubble { bottom: auto; top: 17px; left: 96px; }
+    .dryer-bubble::after { top: 50%; left: auto; right: 100%; margin-top: -7px; border-top-color: transparent; border-right-color: #FDE68A; }
+    .keys-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0.25rem 1rem; }
+    .keys-list li { font-size: 1.35rem; }
+  }
+
+  /* -- The craft: the Mad Calligrapher show video, with a sound button -- */
+  .show-frame { position: relative; border-radius: 14px; overflow: hidden; background: #0F172A; box-shadow: 0 16px 40px rgba(15,23,42,0.15); }
+  .show-frame video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .show-sound {
+    position: absolute; left: 0.7rem; bottom: 0.65rem; display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.38rem 0.75rem 0.38rem 0.6rem; border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; cursor: pointer;
+    font: 600 0.76rem/1 var(--font-body); color: #F8FAFC; background: rgba(15,23,42,0.68); backdrop-filter: blur(6px);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .show-sound:hover { background: rgba(124,58,237,0.85); transform: translateY(-1px); }
+  .show-sound:focus-visible { outline: 2px solid #F9A8D4; outline-offset: 2px; }
+  .show-sound .wave { display: none; }
+  .show-sound[aria-pressed="true"] .wave { display: inline; }
+  .show-sound[aria-pressed="true"] .mute { display: none; }
+
+  /* -- "true clinical synthesis" points back up to the evidence cycle -- */
+  .path-link { color: #9F1239; font-weight: 600; text-decoration: none; background: linear-gradient(90deg, rgba(159,18,57,0.55) 50%, transparent 0) repeat-x 0 100% / 6px 1.5px; padding-bottom: 1px; }
+  .path-link:hover { color: #BE123C; background-image: linear-gradient(rgba(159,18,57,0.7), rgba(159,18,57,0.7)); background-size: 100% 1.5px; }
+  .about-cycle[id] { scroll-margin-top: 100px; }
+  .about-cycle:target img { animation: cycle-flash 2.6s ease-out; border-radius: 16px; }
+  @keyframes cycle-flash { 0%, 30% { box-shadow: 0 0 0 4px rgba(244,114,182,0.55); } 100% { box-shadow: 0 0 0 4px rgba(244,114,182,0); } }
+
+  /* -- "simple to use.": the dryer develops it by itself, so no drag hint -- */
+  .ink-auto.ink-ready { cursor: default; }
+  .ink-auto.ink-ready .ink-vis { background: none; }
+  .path-big .ink-auto .ink-ch { font-style: italic; }
+  .path-big .ink-done.ink-auto .ink-ch { text-shadow: 0 0 16px rgba(244,114,182,0.3); }
+
+  /* Show video: a smaller clip under the Roots text, not a full-width banner */
+  .path-photo.show-video { max-width: 400px; }
