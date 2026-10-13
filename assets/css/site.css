@@ -424,7 +424,9 @@
   .path-beat p { font-size: 0.98rem; color: var(--color-text-muted); line-height: 1.7; }
   .path-coda { max-width: 860px; margin-top: 2.25rem; padding: 2rem 2.25rem; border-radius: 16px; background: var(--color-hero-bg); color: #CBD5E1; }
   .path-coda-big { font-family: var(--font-display); font-size: clamp(1.5rem, 3.2vw, 2.1rem); font-weight: 700; line-height: 1.2; color: var(--color-hero-text); margin-bottom: 0.9rem; }
-  .path-coda p:last-child { font-size: 0.98rem; line-height: 1.7; }
+  .path-coda p:not(.path-coda-big) { font-size: 0.98rem; line-height: 1.7; }
+  .path-coda p:not(.path-coda-big) + p { margin-top: 0.9rem; }
+  .path-coda .path-coda-close { color: var(--color-hero-text); font-weight: 600; }
   .path-coda a { color: #93C5FD; text-decoration: none; font-weight: 500; }
   .path-coda strong { color: var(--color-hero-text); }
 
@@ -998,7 +1000,8 @@
   @media (min-width: 769px) and (max-width: 960px) { .hero-alias { font-size: 0.9rem; } }
   @media (max-width: 768px) {
     .hero-v2 .hero-id-text { min-width: 0; }
-    .hero-alias { font-size: 0.98rem; margin-top: 0.35rem; }
+    .hero-alias { font-size: 0.98rem; margin-top: 0.35rem; white-space: normal; }
+    .hero-alias span:first-child { white-space: nowrap; }
   }
 
   /* -- Hero: the four keywords, developed with the hair dryer parked beside them -- */
@@ -1092,3 +1095,264 @@
   /* -- Phones: hold the dryer without the page scrolling or a callout popping up; sideways swipes on the words dry them -- */
   .dryer-park { -webkit-touch-callout: none; }
   .keys-list { touch-action: pan-y; }
+
+  /* -- Hero: the hair dryer blows the hair in the profile photo -- */
+  /* The clip is cut from the photo's own frame; these offsets put it exactly over the
+     visible part of the image (object-position: center 20%, scale 1.1). */
+  .hero-portrait { position: relative; overflow: visible; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+  .portrait-clip { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; }
+  .hero-portrait .hair-video {
+    position: absolute; left: -0.05%; top: -4.75%; width: 100.1%; height: 108.9%;
+    object-fit: fill; display: block; pointer-events: none;
+    opacity: 0; transition: opacity 0.15s;
+  }
+  .hero-portrait.is-blowing .hair-video { opacity: 1; }
+
+  /* -- Hint on the photo: the dryer's air lines, with a label on hover or focus -- */
+  .hair-hint {
+    position: absolute; left: 2%; bottom: 2%; z-index: 2; width: 30px; height: 30px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; cursor: help;
+    background: #0F172A; border: 1.5px solid rgba(245,158,11,0.55); box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+    outline-offset: 3px;
+  }
+  .hair-hint:focus-visible { outline: 2px solid #F9A8D4; }
+  .hair-hint::after {
+    content: attr(data-tip); position: absolute; left: 0; top: calc(100% + 8px); white-space: nowrap; pointer-events: none;
+    padding: 0.3rem 0.65rem; border-radius: 999px; font-size: 0.74rem; font-weight: 600; color: #1E1B4B; background: #FDE68A;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.3); opacity: 0; transform: translateY(-3px); transition: opacity 0.15s, transform 0.15s;
+  }
+  .hair-hint:hover::after, .hair-hint:focus::after { opacity: 1; transform: none; }
+  @media (hover: none) { .hair-hint::after { content: attr(data-tip-touch); } }
+  /* On phones the stand is a screen away from the photo, so the bubble keeps to the words */
+  @media (max-width: 768px) { .bubble-more { display: none; } .hair-hint { width: 26px; height: 26px; left: 0; bottom: 0; } .hair-hint svg { width: 15px; } }
+
+  /* -- Visual reasoning lens (Learn more 02 · 04, and The craft on the home page) -- */
+  /* A lens wanders over a faint knowledge graph, then settles on a working set:
+     the hypothesis path lights up, an inconsistency and an unstated assumption show. */
+  .vr-visual { border-radius: 10px; background: #fff; border: 1px dashed #bfd4f2; padding: 0.6rem; }
+  .lens-viz { display: block; width: 100%; height: auto; }
+  .lens-viz .g-e { stroke: #E2E8F0; stroke-width: 1.3; }
+  .lens-viz .g-n { fill: #CBD5E1; }
+  .lens-viz .lens-bg { fill: #F8FAFF; }
+  .lens-viz .c-e { stroke: #93C5FD; stroke-width: 1.5; }
+  .lens-viz .c-e-ws { stroke: #60A5FA; stroke-width: 2; }
+  .lens-viz .c-path { stroke: #7C3AED; stroke-width: 4; stroke-linecap: round; }
+  .lens-viz .c-assume { stroke: #D97706; stroke-width: 2.5; stroke-dasharray: 5 4; }
+  .lens-viz .c-n { fill: #60A5FA; }
+  .lens-viz .c-ws { fill: #2563EB; }
+  .lens-viz .c-hyp { fill: #7C3AED; stroke: #fff; stroke-width: 2; }
+  .lens-viz .c-bad { fill: #E11D48; stroke: #FECDD3; stroke-width: 4; }
+  .lens-viz .lens-ring { fill: none; stroke: #1E293B; stroke-width: 3; }
+  .lens-viz text { font-family: Inter, system-ui, sans-serif; font-size: 12px; font-weight: 600; }
+  .lens-viz .lens-call text { paint-order: stroke; stroke: #fff; stroke-width: 4px; stroke-linejoin: round; }
+  .lens-viz .t-bad { fill: #E11D48; }
+  .lens-viz .t-assume { fill: #B45309; }
+  .lens-viz .t-phase { fill: #94A3B8; font-style: italic; font-weight: 500; }
+  .lens-viz .t-focus { fill: #7C3AED; font-weight: 700; font-style: normal; }
+  @media (max-width: 768px) {
+    .vr-visual { padding: 0.4rem; }
+    .lens-viz text { font-size: 19px; }
+    .lens-viz .t-assume { font-size: 18px; }
+    .lens-viz .t-bad { font-size: 16px; }
+  }
+  .path-photo.craft-lens { max-width: 520px; }
+  .craft-lens figcaption { text-align: left; font-style: normal; font-size: 0.8rem; color: var(--color-text-muted); }
+  .craft-lens figcaption a { color: var(--color-accent); text-decoration: none; font-weight: 500; white-space: nowrap; }
+
+  /* ===== Learn more: problem visuals, loop diagram, approach cards ===== */
+  /* -- 01 The Problem: picture-led retrieval card, and one query traced through every failure -- */
+  .problem-grid { grid-template-columns: repeat(6, 1fr); }
+  .problem-grid > .problem-card { grid-column: span 2; min-width: 0; }
+  .problem-grid > .problem-card.problem-feature,
+  .problem-grid > .problem-card:last-child { grid-column: 1 / -1; }
+
+  .problem-feature { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2.5rem; align-items: center; }
+  .problem-card p.pf-lead { font-family: var(--font-display); font-style: italic; font-size: 1.15rem; line-height: 1.35; color: #9F1239; }
+  .mm .who { display: block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.02em; }
+  .mm-asked .who { color: #0F766E; }
+  .mm-got .who { color: #BE123C; }
+  .pc-link { display: inline-block; margin-top: 0.9rem; font-size: 0.82rem; font-weight: 500; color: var(--color-accent); text-decoration: none; }
+  .drift-box { position: relative; }
+  .drift-stamp { position: absolute; right: 1rem; bottom: 0.9rem; font-size: 0.78rem; }
+  @media (max-width: 480px) { .drift-box .drift-stamp { position: static; display: table; margin: 0.5rem 0 0 auto; } }
+  .ai-answer { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin-bottom: 0.6rem; font-size: 0.85rem; color: var(--color-text); }
+  .ai-answer code { white-space: nowrap; }
+  /* 05: the rule as a tree, with the shortcut that skips it */
+  .tree-hint { display: none; }
+  .tree-wrap { margin-top: 1.25rem; padding: 1rem; border-radius: 10px; background: #fff; border: 1px dashed #CBD5E1; overflow-x: auto; }
+  .logic-tree { display: block; width: 100%; min-width: 680px; height: auto; font-family: var(--font-body); }
+  .logic-tree .node rect { fill: #F8FAFC; stroke: #CBD5E1; stroke-width: 1.5; }
+  .logic-tree .t-op { font: 700 13px ui-monospace, SFMono-Regular, Menlo, monospace; fill: #6D28D9; letter-spacing: 0.04em; }
+  .logic-tree .t-op-light { font: 700 13px ui-monospace, SFMono-Regular, Menlo, monospace; fill: #C4B5FD; letter-spacing: 0.04em; }
+  .logic-tree .t-then { font-size: 16px; font-weight: 700; fill: #fff; }
+  .logic-tree .t-node { font-size: 15px; font-weight: 600; fill: #1F2937; }
+  .logic-tree .t-node.t-small { font-size: 13px; }
+  .logic-tree .t-leaf { font-size: 13.5px; font-weight: 600; fill: #1F2937; }
+  .logic-tree .chip text { font-size: 12.5px; font-weight: 700; }
+  .logic-tree .chip.ok rect { fill: #CCFBF1; } .logic-tree .chip.ok text { fill: #0F766E; }
+  .logic-tree .chip.bad rect { fill: #FFE4E6; } .logic-tree .chip.bad text { fill: #BE123C; }
+  .logic-tree .chip.na rect { fill: #F1F5F9; } .logic-tree .chip.na text { fill: #64748B; font-weight: 600; }
+  .logic-tree .t-verdict { font-family: var(--font-display); font-size: 19px; font-weight: 700; fill: #0F766E; }
+  .logic-tree .t-verdict-sub { font-size: 13.5px; fill: #475569; }
+  .logic-tree .t-sc-title { font-family: Inter, system-ui, sans-serif; font-size: 11.5px; font-weight: 800; letter-spacing: 0.1em; fill: #BE123C; }
+  .logic-tree .t-shortcut { font-family: var(--font-display); font-style: italic; font-size: 16px; font-weight: 600; fill: #1E1B4B; }
+  .tree-legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; margin-top: 0.6rem; font-size: 0.74rem !important; }
+  .pc-link-wide { grid-column: 1 / -1; }
+  .tree-legend .lg-ok { color: #0F766E; font-weight: 700; }
+  .tree-legend .lg-bad { color: #BE123C; font-weight: 700; }
+  .tree-legend .lg-sc { color: #BE123C; }
+  .tree-legend .lg-sc::before { content: ""; display: inline-block; width: 22px; margin-right: 0.4rem; vertical-align: middle; border-top: 2.5px dashed #BE123C; }
+  .problem-feature .pf-text p { font-size: 0.95rem; }
+
+  .mismatch { display: grid; grid-template-columns: minmax(0, 190px) auto minmax(0, 190px); gap: 1rem 1.25rem; align-items: center; justify-content: start; }
+  .mm { position: relative; margin: 0; }
+  .mm img {
+    display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(15,23,42,0.12); background: #E2E8F0;
+  }
+  .mm-tag {
+    display: inline-block; margin-bottom: 0.6rem; padding: 0.25rem 0.6rem; border-radius: 999px;
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff;
+  }
+  .mm-asked .mm-tag { background: #0F766E; }
+  .mm-got .mm-tag { background: #BE123C; }
+  .mm-got img { outline: 3px solid #FDA4AF; outline-offset: 3px; }
+  .mm-x {
+    position: absolute; top: 1.4rem; right: -0.6rem; z-index: 1; width: 2rem; height: 2rem; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 1.05rem; font-weight: 700; color: #fff;
+    background: #BE123C; box-shadow: 0 4px 12px rgba(190,18,60,0.35);
+  }
+  .mm figcaption { margin-top: 0.75rem; font-size: 0.8rem; line-height: 1.45; color: var(--color-text-muted); }
+  .mm figcaption strong { display: block; font-family: var(--font-display); font-size: 1.1rem; line-height: 1.25; color: var(--color-text); margin-bottom: 0.15rem; }
+  .mm-got figcaption strong { color: #9F1239; }
+
+  .mismatch { align-items: start; }
+  .mm-link { align-self: center; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; text-align: center; max-width: 7.5rem; }
+  .mm-words { font-size: 0.78rem; color: var(--color-text-muted); white-space: nowrap; }
+  .mm-words b { font-weight: 700; color: var(--color-text); padding: 0 0.15em; background: linear-gradient(transparent 60%, rgba(96,165,250,0.35) 0); }
+  .mm-arrow { font-size: 1.6rem; line-height: 1; color: #94A3B8; }
+  .mm-verdict { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: 0.95rem; line-height: 1.25; color: #9F1239; }
+  .mismatch .mm-credit { grid-column: 1 / -1; margin-top: 0.25rem; font-size: 0.7rem; font-style: italic; color: #94A3B8; text-align: right; }
+
+  /* -- One query, traced through every failure -- */
+  .trace-intro { margin-bottom: 2rem; }
+  .trace-intro strong { color: #0F766E; }
+  .problem-card { display: flex; flex-direction: column; }
+  .problem-card.problem-feature { display: grid; }
+  .trace { padding-top: 0.2rem; }
+  .problem-grid > .problem-card.pc-drift { grid-column: 1 / span 3; grid-row: span 2; }
+  .problem-grid > .problem-card.pc-side { grid-column: span 3; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 1.5rem; align-items: center; }
+  .pc-side .trace { padding-top: 0; }
+  .pc-side .trace-box { margin-top: 0; }
+  .pc-drift .drift { gap: 0.35rem; }
+  .pc-drift .drift li span { padding: 0.3rem 0.75rem; font-size: 0.82rem; }
+  .trace-box { margin-top: 1.1rem; padding: 0.9rem 1rem; border-radius: 10px; background: #fff; border: 1px dashed #CBD5E1; font-size: 0.8rem; line-height: 1.5; color: var(--color-text-muted); }
+  .trace-label { display: block; margin-bottom: 0.55rem; font-size: 0.64rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #0F766E; }
+  .problem-card .trace-box p { font-size: 0.78rem; line-height: 1.5; }
+
+  /* 02 drift: each step plausible, the last one a different diagnosis */
+  .drift { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+  .drift li { padding: 0.2rem 0.6rem; border-radius: 999px; font-weight: 600; font-size: 0.76rem; }
+  .drift li + li::before { content: "\2193"; display: block; margin: -0.15rem 0 0.15rem 0.2rem; font-weight: 400; color: #94A3B8; }
+  .drift li + li { background: none !important; padding: 0; }
+  .drift li span { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 999px; }
+  .drift li:nth-child(1) span { background: #CCFBF1; color: #0F766E; }
+  .drift li:nth-child(2) span { background: #FEF3C7; color: #92400E; }
+  .drift li:nth-child(3) span { background: #FFEDD5; color: #9A3412; }
+  .drift li:nth-child(4) span { background: #FFE4E6; color: #9F1239; }
+  .drift li:first-child { padding: 0; }
+
+  /* 03 hallucination: a confident, well-formed, nonexistent code */
+  .stamp { display: inline-block; padding: 0.15rem 0.5rem; border: 2px solid #BE123C; border-radius: 4px; color: #BE123C; font-size: 0.66rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; transform: rotate(-4deg); }
+
+  /* 04 explainability gap: a paragraph to read vs. what experts need to do */
+  .gap-row b { display: block; margin: 0.15rem 0 0.3rem; font-size: 0.7rem; font-weight: 700; color: var(--color-text); }
+  .gap-row .chips + b { margin-top: 0.6rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  .chips span { padding: 0.12rem 0.5rem; border-radius: 999px; font-size: 0.72rem; font-weight: 600; }
+  .chips.have span { background: #E2E8F0; color: #475569; }
+  .chips.need span { background: #EDE9FE; color: #5B21B6; }
+
+  @media (max-width: 960px) {
+    .problem-feature { grid-template-columns: 1fr; gap: 1.5rem; }
+    .problem-grid > .problem-card { grid-column: 1 / -1; }
+    .problem-grid > .problem-card.pc-drift { grid-column: 1 / -1; grid-row: auto; }
+    .problem-grid > .problem-card.pc-side { grid-column: 1 / -1; }
+  }
+  @media (min-width: 769px) and (max-width: 960px) {
+    .pc-drift .drift { flex-direction: row; flex-wrap: wrap; align-items: flex-start; gap: 0.5rem 0; }
+    .pc-drift .drift li { display: flex; flex-direction: column; }
+    .pc-drift .drift li + li { flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
+    .pc-drift .drift li + li::before { content: "\2192"; margin: 0.3rem 0.5rem 0; }
+  }
+  @media (max-width: 768px) {
+    .problem-card p.tree-hint { display: block; margin-top: 0.9rem; font-size: 0.72rem; color: #94A3B8; }
+    .tree-wrap { margin-top: 0.4rem; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .problem-grid > .problem-card.pc-side { grid-template-columns: 1fr; gap: 0.9rem; }
+    .problem-feature { padding: 1.5rem 1.25rem; }
+    .mismatch { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1rem 0.85rem; max-width: 400px; }
+    .mm-link { grid-column: 1 / -1; grid-row: 2; flex-direction: row; justify-content: center; max-width: none; gap: 0.6rem; }
+    .mm-arrow { transform: rotate(0); font-size: 1.2rem; }
+    .mm figcaption strong { font-size: 1rem; }
+    .mm-tag { font-size: 0.6rem; }
+  }
+
+  /* -- 02 Approach: loop diagram with a flat knowledge stack -- */
+  .arch-loop { padding: 2.25rem 2rem 1.5rem; }
+  .loop-grid {
+    display: grid; align-items: center; gap: 1.1rem 0;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1.25fr);
+    grid-template-areas: "human a1 llm a2 stack" "human a4 reason a3 stack";
+  }
+  .arch-loop .arch-node { width: auto; min-height: 84px; }
+  .lp-human { grid-area: human; align-self: stretch; }
+  .lp-llm { grid-area: llm; } .lp-reason { grid-area: reason; } .lp-stack { grid-area: stack; }
+  .lp-a1 { grid-area: a1; } .lp-a2 { grid-area: a2; } .lp-a3 { grid-area: a3; } .lp-a4 { grid-area: a4; }
+  .arch-loop .arch-arrow { font-size: 1.6rem; line-height: 1; color: #94A3B8; padding: 0 0.85rem; }
+  .kstack { display: flex; flex-direction: column; padding-right: 1.5rem; }
+  .kstack-title { font-size: 0.8rem; font-weight: 600; color: #6EE7B7; margin: 0 0 0.6rem 1.5rem; }
+  .kcard {
+    position: relative; display: flex; flex-direction: column; gap: 0.1rem;
+    padding: 0.55rem 0.85rem; border-radius: 8px; line-height: 1.3;
+    background: #123B35; border: 1px solid rgba(110,231,183,0.45);
+    box-shadow: 0 -6px 14px rgba(2,6,23,0.45);
+  }
+  .kcard b { font-size: 0.78rem; font-weight: 600; color: #A7F3D0; }
+  .kcard span { font-size: 0.68rem; font-style: italic; color: #6EE7B7; opacity: 0.85; }
+  .kcard + .kcard { margin-top: -0.35rem; }
+  .kc-3 { margin-left: 1.5rem; margin-right: -1.5rem; z-index: 1; background: #0F302B; }
+  .kc-2 { margin-left: 0.75rem; margin-right: -0.75rem; z-index: 2; background: #123B35; }
+  .kc-1 { z-index: 3; background: #15463F; }
+  .loop-note { margin: 1.4rem 0 0; text-align: center; font-size: 0.78rem; color: #94A3B8; }
+  @media (max-width: 768px) {
+    .arch-loop { padding: 1.75rem 1.25rem 1.25rem; }
+    .loop-grid {
+      grid-template-columns: minmax(0, 1fr); gap: 0.2rem; justify-items: center;
+      grid-template-areas: "human" "a1" "llm" "a2" "stack" "a3" "reason";
+    }
+    .arch-loop .arch-node { width: 100%; max-width: 300px; min-height: 0; }
+    .arch-loop .arch-arrow { transform: rotate(90deg); padding: 0.3rem 0; font-size: 1.3rem; }
+    .lp-a4 { display: none; }
+    .kstack { width: 100%; max-width: 300px; padding-right: 1.5rem; }
+  }
+
+  /* -- 02 Approach cards: 01-03 in a row, 04 full width with the lens -- */
+  .approach-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .approach-step.vr-step { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 0 2rem; align-items: center; }
+  .tension-lead { margin-bottom: 0.3rem; font-style: italic; font-weight: 500; color: var(--color-text) !important; }
+  .tension { margin: 0 0 0.6rem; padding: 0; list-style: none; font-size: 0.88rem; line-height: 1.55; color: var(--color-text-muted); }
+  .tension li { position: relative; padding-left: 1.1rem; }
+  .tension li::before { content: "\26A0"; position: absolute; left: 0; top: 0; font-size: 0.75rem; color: #D97706; }
+  .eval-list li::before { content: "\25B8"; font-size: 0.9rem; top: -0.05rem; color: var(--color-accent); }
+  .eval-list strong { color: var(--color-text); font-weight: 600; }
+  .approach-step p strong { color: var(--color-text); font-weight: 600; }
+  @media (max-width: 960px) {
+    .approach-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .approach-flow > .approach-step:nth-child(3) { grid-column: 1 / -1; }
+    .approach-step.vr-step { grid-template-columns: minmax(0, 1fr); }
+    .vr-step .vr-visual { margin-top: 1rem; }
+  }
+  @media (max-width: 768px) {
+    .approach-flow { grid-template-columns: minmax(0, 1fr); }
+  }

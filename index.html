@@ -58,12 +58,13 @@ if (!window.location.hash) {
   <div class="hero-inner hero-v2">
     <div class="hero-top">
       <div class="hero-id">
-        <div class="hero-portrait">
-          <img src="assets/images/photo-profile.jpg" alt="&ldquo;Olivia&rdquo; Z. Milgrom" />
+        <div class="hero-portrait" data-hair="assets/video/hair-breeze.mp4">
+          <div class="portrait-clip"><img src="assets/images/photo-profile.jpg" alt="&ldquo;Olivia&rdquo; Z. Milgrom" /></div>
+          <span class="hair-hint" tabindex="0" role="note" aria-label="Blow my hair: hover over my photo, or drag the hair dryer here" data-tip="Blow my hair: hover, or drag the dryer here" data-tip-touch="Press and hold my photo"><svg viewBox="0 0 22 20" width="18" height="16" aria-hidden="true" focusable="false"><g fill="none" stroke="#F59E0B" stroke-width="2.2" stroke-linecap="round"><path d="M2 4 q4 -3 8 0 t8 0"/><path d="M2 10 q4 -3 8 0 t8 0"/><path d="M2 16 q4 -3 8 0 t8 0"/></g></svg></span>
         </div>
         <div class="hero-id-text">
           <p class="hero-tagline">Physician-informaticist, builder, and innovator</p>
-          <a class="hero-alias" href="#roots">a.k.a. the <span>Mad Calligrapher</span> <span class="hero-alias-arrow" aria-hidden="true">&darr;</span></a>
+          <a class="hero-alias" href="#roots">a.k.a. the <span>Hair-dryer Calligrapher</span> <span class="hero-alias-arrow" aria-hidden="true">&darr;</span></a>
         </div>
       </div>
       <div class="hero-headline">
@@ -87,7 +88,7 @@ if (!window.location.hash) {
     </div>
     <div class="hero-keys ink-group" data-ink="dark">
       <div class="dryer-park" role="button" tabindex="0" aria-label="Hair dryer: drag it over the words to reveal them, or press Enter">
-        <span class="dryer-bubble">Drag me over the words</span>
+        <span class="dryer-bubble">Drag me over the words<span class="bubble-more"> &mdash; or her hair &uarr;</span></span>
       </div>
       <ul class="keys-list">
         <li><span class="ink">Explainable</span></li>
@@ -148,7 +149,7 @@ if (!window.location.hash) {
     <div class="path">
       <div class="path-beat path-art" id="roots">
         <div><span class="path-tag">Roots</span><div class="path-big">Proofs and arts.</div></div>
-        <p>I grew up competitive in <mark class="hl">math and STEM</mark>, and in love with <mark class="hl">art</mark> &mdash; drawing, calligraphy, the stage. What tied them together was a love of <mark class="hl">innovation</mark>. Once, I brought live Eastern Asian calligraphy onto the stage in a chemistry magic show I designed &mdash; <span class="ink-note">where a hair dryer did the writing.</span></p>
+        <p>I grew up competitive in <mark class="hl">math and science</mark>, and in love with <mark class="hl">art</mark> &mdash; drawing, singing, the stage. What tied them together was a love of <mark class="hl">innovation</mark>. Once, I designed a stage show to bring Eastern Asian calligraphy to life through chemistry &mdash; <span class="ink-note">a hair dryer wrote the script with heat, and erased it with cool air.</span></p>
         <figure class="path-photo show-video">
           <div class="show-frame">
             <video autoplay muted loop playsinline preload="metadata" poster="assets/images/mad-calligrapher-show-poster.jpg" aria-label="A hand sweeps a hair dryer over a blank canvas, and &ldquo;Mad Calligrapher Show&rdquo; appears in blue calligraphy">
@@ -177,11 +178,30 @@ if (!window.location.hash) {
       <div class="path-beat path-art">
         <div><span class="path-tag">The craft</span><div class="path-big">Complex inside, <span class="ink" data-ink-auto>simple to use.</span></div></div>
         <p>I walked into <mark class="hl">clinical medicine and formal reasoning</mark> because they matter &mdash; never intimidated by how complicated they are. <span class="ink-note">Like the calligraphy appearing under a hair dryer,</span> the chemistry stays backstage. I hide <mark class="hl">hardcore informatics</mark> behind intuitive design &mdash; so <mark class="hl">domain experts take the center stage</mark>.</p>
+        <figure class="path-photo craft-lens">
+          <div class="vr-visual">
+            <svg class="lens-viz" viewBox="0 0 620 212" role="img" aria-labelledby="lens-title lens-desc">
+          <title id="lens-title">A visual working set: from open-ended investigation to a focused hypothesis</title>
+          <desc id="lens-desc">A lens wanders across a dense knowledge graph, then settles on a small working set. Inside it, one hypothesis path lights up, an inconsistent node is flagged, and an unstated assumption shows as a dashed link.</desc>
+          <defs><clipPath id="lens-clip"><circle r="40"><animate attributeName="r" dur="11s" repeatCount="indefinite" keyTimes="0;0.65;0.72;0.9;1" values="40;40;74;74;40"/><animateTransform attributeName="transform" type="translate" dur="11s" repeatCount="indefinite" keyTimes="0;0.12;0.25;0.33;0.45;0.52;0.65;0.92;1" values="130 108;130 108;258 82;258 82;226 150;226 150;402 102;402 102;130 108"/></circle></clipPath></defs>
+          <g class="lens-grey"><line x1="36" y1="46" x2="84" y2="112" class="g-e"/><line x1="84" y1="112" x2="52" y2="172" class="g-e"/><line x1="36" y1="46" x2="126" y2="58" class="g-e"/><line x1="126" y1="58" x2="150" y2="146" class="g-e"/><line x1="84" y1="112" x2="126" y2="58" class="g-e"/><line x1="84" y1="112" x2="150" y2="146" class="g-e"/><line x1="126" y1="58" x2="196" y2="30" class="g-e"/><line x1="196" y1="30" x2="214" y2="104" class="g-e"/><line x1="126" y1="58" x2="214" y2="104" class="g-e"/><line x1="150" y1="146" x2="244" y2="178" class="g-e"/><line x1="214" y1="104" x2="252" y2="112" class="g-e"/><line x1="252" y1="112" x2="296" y2="134" class="g-e"/><line x1="244" y1="178" x2="296" y2="134" class="g-e"/><line x1="214" y1="104" x2="272" y2="58" class="g-e"/><line x1="196" y1="30" x2="272" y2="58" class="g-e"/><line x1="272" y1="58" x2="322" y2="24" class="g-e"/><line x1="272" y1="58" x2="296" y2="134" class="g-e"/><line x1="296" y1="134" x2="304" y2="190" class="g-e"/><line x1="244" y1="178" x2="304" y2="190" class="g-e"/><line x1="272" y1="58" x2="362" y2="80" class="g-e"/><line x1="322" y1="24" x2="398" y2="58" class="g-e"/><line x1="296" y1="134" x2="372" y2="134" class="g-e"/><line x1="304" y1="190" x2="372" y2="134" class="g-e"/><line x1="252" y1="112" x2="362" y2="80" class="g-e"/><line x1="362" y1="80" x2="398" y2="58" class="g-e"/><line x1="362" y1="80" x2="404" y2="100" class="g-e"/><line x1="398" y1="58" x2="404" y2="100" class="g-e"/><line x1="398" y1="58" x2="442" y2="88" class="g-e"/><line x1="442" y1="88" x2="404" y2="100" class="g-e"/><line x1="404" y1="100" x2="420" y2="128" class="g-e"/><line x1="420" y1="128" x2="372" y2="134" class="g-e"/><line x1="372" y1="134" x2="362" y2="80" class="g-e"/><line x1="442" y1="88" x2="420" y2="128" class="g-e"/><line x1="398" y1="58" x2="474" y2="28" class="g-e"/><line x1="442" y1="88" x2="526" y2="74" class="g-e"/><line x1="420" y1="128" x2="506" y2="156" class="g-e"/><line x1="506" y1="156" x2="462" y2="188" class="g-e"/><line x1="474" y1="28" x2="526" y2="74" class="g-e"/><line x1="526" y1="74" x2="506" y2="156" class="g-e"/><line x1="420" y1="128" x2="462" y2="188" class="g-e"/><circle cx="36" cy="46" r="5" class="g-n"/><circle cx="84" cy="112" r="5" class="g-n"/><circle cx="52" cy="172" r="5" class="g-n"/><circle cx="126" cy="58" r="5" class="g-n"/><circle cx="150" cy="146" r="5" class="g-n"/><circle cx="196" cy="30" r="5" class="g-n"/><circle cx="214" cy="104" r="5" class="g-n"/><circle cx="244" cy="178" r="5" class="g-n"/><circle cx="272" cy="58" r="5" class="g-n"/><circle cx="296" cy="134" r="5" class="g-n"/><circle cx="322" cy="24" r="5" class="g-n"/><circle cx="304" cy="190" r="5" class="g-n"/><circle cx="474" cy="28" r="5" class="g-n"/><circle cx="506" cy="156" r="5" class="g-n"/><circle cx="526" cy="74" r="5" class="g-n"/><circle cx="462" cy="188" r="5" class="g-n"/><circle cx="252" cy="112" r="5" class="g-n"/><circle cx="362" cy="80" r="5" class="g-n"/><circle cx="398" cy="58" r="5" class="g-n"/><circle cx="442" cy="88" r="5" class="g-n"/><circle cx="420" cy="128" r="5" class="g-n"/><circle cx="372" cy="134" r="5" class="g-n"/><circle cx="404" cy="100" r="5" class="g-n"/></g>
+          <g clip-path="url(#lens-clip)"><rect width="620" height="212" class="lens-bg"/><line x1="36" y1="46" x2="84" y2="112" class="c-e"/><line x1="84" y1="112" x2="52" y2="172" class="c-e"/><line x1="36" y1="46" x2="126" y2="58" class="c-e"/><line x1="126" y1="58" x2="150" y2="146" class="c-e"/><line x1="84" y1="112" x2="126" y2="58" class="c-e"/><line x1="84" y1="112" x2="150" y2="146" class="c-e"/><line x1="126" y1="58" x2="196" y2="30" class="c-e"/><line x1="196" y1="30" x2="214" y2="104" class="c-e"/><line x1="126" y1="58" x2="214" y2="104" class="c-e"/><line x1="150" y1="146" x2="244" y2="178" class="c-e"/><line x1="214" y1="104" x2="252" y2="112" class="c-e"/><line x1="252" y1="112" x2="296" y2="134" class="c-e"/><line x1="244" y1="178" x2="296" y2="134" class="c-e"/><line x1="214" y1="104" x2="272" y2="58" class="c-e"/><line x1="196" y1="30" x2="272" y2="58" class="c-e"/><line x1="272" y1="58" x2="322" y2="24" class="c-e"/><line x1="272" y1="58" x2="296" y2="134" class="c-e"/><line x1="296" y1="134" x2="304" y2="190" class="c-e"/><line x1="244" y1="178" x2="304" y2="190" class="c-e"/><line x1="272" y1="58" x2="362" y2="80" class="c-e"/><line x1="322" y1="24" x2="398" y2="58" class="c-e"/><line x1="296" y1="134" x2="372" y2="134" class="c-e"/><line x1="304" y1="190" x2="372" y2="134" class="c-e"/><line x1="252" y1="112" x2="362" y2="80" class="c-e"/><line x1="362" y1="80" x2="398" y2="58" class="c-e-ws"/><line x1="362" y1="80" x2="404" y2="100" class="c-path"/><line x1="398" y1="58" x2="404" y2="100" class="c-e-ws"/><line x1="398" y1="58" x2="442" y2="88" class="c-e-ws"/><line x1="442" y1="88" x2="404" y2="100" class="c-e-ws"/><line x1="404" y1="100" x2="420" y2="128" class="c-path"/><line x1="420" y1="128" x2="372" y2="134" class="c-e-ws"/><line x1="372" y1="134" x2="362" y2="80" class="c-e-ws"/><line x1="442" y1="88" x2="420" y2="128" class="c-e-ws"/><line x1="398" y1="58" x2="474" y2="28" class="c-e"/><line x1="442" y1="88" x2="526" y2="74" class="c-e"/><line x1="420" y1="128" x2="506" y2="156" class="c-e"/><line x1="506" y1="156" x2="462" y2="188" class="c-e"/><line x1="474" y1="28" x2="526" y2="74" class="c-e"/><line x1="526" y1="74" x2="506" y2="156" class="c-e"/><line x1="420" y1="128" x2="462" y2="188" class="c-e"/><line x1="372" y1="134" x2="404" y2="100" class="c-assume"/><circle cx="36" cy="46" r="5" class="c-n"/><circle cx="84" cy="112" r="5" class="c-n"/><circle cx="52" cy="172" r="5" class="c-n"/><circle cx="126" cy="58" r="5" class="c-n"/><circle cx="150" cy="146" r="5" class="c-n"/><circle cx="196" cy="30" r="5" class="c-n"/><circle cx="214" cy="104" r="5" class="c-n"/><circle cx="244" cy="178" r="5" class="c-n"/><circle cx="272" cy="58" r="5" class="c-n"/><circle cx="296" cy="134" r="5" class="c-n"/><circle cx="322" cy="24" r="5" class="c-n"/><circle cx="304" cy="190" r="5" class="c-n"/><circle cx="474" cy="28" r="5" class="c-n"/><circle cx="506" cy="156" r="5" class="c-n"/><circle cx="526" cy="74" r="5" class="c-n"/><circle cx="462" cy="188" r="5" class="c-n"/><circle cx="252" cy="112" r="5" class="c-n"/><circle cx="362" cy="80" r="6.5" class="c-hyp"/><circle cx="398" cy="58" r="6" class="c-ws"/><circle cx="442" cy="88" r="6.5" class="c-bad"/><circle cx="420" cy="128" r="6.5" class="c-hyp"/><circle cx="372" cy="134" r="6" class="c-ws"/><circle cx="404" cy="100" r="6.5" class="c-hyp"/></g>
+          <circle r="40" class="lens-ring"><animate attributeName="r" dur="11s" repeatCount="indefinite" keyTimes="0;0.65;0.72;0.9;1" values="40;40;74;74;40"/><animateTransform attributeName="transform" type="translate" dur="11s" repeatCount="indefinite" keyTimes="0;0.12;0.25;0.33;0.45;0.52;0.65;0.92;1" values="130 108;130 108;258 82;258 82;226 150;226 150;402 102;402 102;130 108"/></circle>
+          <g class="lens-call"><animate attributeName="opacity" dur="11s" repeatCount="indefinite" keyTimes="0;0.7;0.75;0.88;0.92;1" values="0;0;1;1;0;0"/>
+            <text x="482" y="93" class="t-bad">&#10007; inconsistency</text>
+            <text x="332" y="166" text-anchor="end" class="t-assume">unstated assumption</text>
+          </g>
+          <text x="6" y="206" class="t-phase"><animate attributeName="opacity" dur="11s" repeatCount="indefinite" keyTimes="0;0.6;0.66;0.94;1" values="1;1;0;0;1"/>open-ended investigation &#8230;</text>
+          <text x="614" y="206" text-anchor="end" class="t-phase t-focus"><animate attributeName="opacity" dur="11s" repeatCount="indefinite" keyTimes="0;0.7;0.75;0.88;0.92;1" values="0;0;1;1;0;0"/>&#8594; focused hypothesis</text>
+        </svg>
+          </div>
+        </figure>
       </div>
     </div>
     <div class="path-coda">
       <p class="path-coda-big">AI fails not for lack of data, but for lack of understanding.</p>
       <p>Philosophy &mdash; the questions it asks, the ontologies it clarifies &mdash; is how we fix it. That&rsquo;s my passion &mdash; and I make it approachable. As <a href="https://sloanreview.mit.edu/video/philosophy-eats-ai-what-leaders-should-know/" target="_blank" rel="noopener">MIT Sloan</a> put it: <strong>&lsquo;Philosophy eats AI.&rsquo;</strong></p>
+      <p class="path-coda-close">In medicine, that philosophy is the deep, hard-won domain expertise we trust.</p>
     </div>
   </div>
 </section>
@@ -335,6 +355,12 @@ if (!window.location.hash) {
 </footer>
 
 <script src="assets/js/hair-dryer-ink.js"></script>
+<script>
+  // Reduced motion: the visual-reasoning lens shows its settled, focused frame
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.lens-viz').forEach(function (svg) { svg.pauseAnimations(); svg.setCurrentTime(8.8); });
+  }
+</script>
 <script>
 // Show video: plays muted (browsers block sound until a click); the button turns sound on from the start
 (function () {

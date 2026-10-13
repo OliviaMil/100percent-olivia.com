@@ -8,6 +8,9 @@
  * - Nobody tries it within a few seconds: the dryer sweeps once on its own.
  * - The dryer stays on its stand: pick it up again and the ink cools and fades,
  *   ready to be developed once more.
+ * - The profile photo (.hero-portrait[data-hair]) answers too: bring the dryer
+ *   over it (drag it, hover with the mouse, or press on the photo with a finger)
+ *   and the hair blows; take it away and the hair settles back into the photo.
  * - Words marked data-ink-auto are not for dragging: the dryer passes over them
  *   by itself shortly after they scroll into view, then on a loop (develop,
  *   hold, cool away, develop again) for as long as they stay on screen.
@@ -120,6 +123,7 @@
   var last = performance.now();
   var running = false;
   var finishTimer;
+  var hoveredWords = false; // the hover passed over words, not only the photo
 
   function near(item, x, y, pad) {
     var rects = item.el.getClientRects();
@@ -196,13 +200,74 @@
     return any;
   }
 
+  // The hair in the profile photo: a short clip that blows out and settles back
+  // (it plays forwards, then in reverse, so its first and last frames are the photo)
+  var hair = (function () {
+    var box = document.querySelector('.hero-portrait[data-hair]');
+    if (!box) return null;
+    var v = document.createElement('video');
+    v.className = 'hair-video';
+    v.muted = true;
+    v.playsInline = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    v.setAttribute('aria-hidden', 'true');
+    v.preload = 'auto';
+    v.src = box.getAttribute('data-hair');
+    (box.querySelector('.portrait-clip') || box).appendChild(v);
+    var on = false, since = 0, stopTimer;
+    var MIN_BLOW = 1600; // even a quick tap or pass gets a proper gust
+    v.addEventListener('ended', function () {
+      if (on) return;
+      box.classList.remove('is-blowing');
+      v.currentTime = 0;
+    });
+    function set(blow) {
+      if (blow) clearTimeout(stopTimer);
+      if (blow === on) return;
+      if (!blow && performance.now() - since < MIN_BLOW) {
+        clearTimeout(stopTimer);
+        stopTimer = setTimeout(function () { set(false); }, MIN_BLOW - (performance.now() - since));
+        return;
+      }
+      on = blow;
+      if (blow) since = performance.now();
+      var d = v.duration, t = v.currentTime;
+      if (blow) {
+        // Settling back already: jump to the same frame on the way out
+        if (d && t > d / 2) v.currentTime = d - t;
+        v.loop = true;
+        box.classList.add('is-blowing');
+        var p = v.play();
+        if (p && p.catch) p.catch(function () {});
+      } else {
+        // Still blowing out: jump to the same frame on the way back, then let it settle
+        if (d && t < d / 2 && !v.paused) v.currentTime = d - t;
+        v.loop = false;
+        if (v.paused) box.classList.remove('is-blowing');
+      }
+    }
+    return {
+      // Is the warm air (x, y) on the photo?
+      at: function (x, y) {
+        var r = box.getBoundingClientRect(), rad = r.width / 2 + 16;
+        var dx = x - (r.left + r.width / 2), dy = y - (r.top + r.height / 2);
+        return dx * dx + dy * dy <= rad * rad;
+      },
+      set: set,
+      box: box
+    };
+  })();
+
   function showDryer(x, y) {
+    if (hair) hair.set(hair.at(x, y));
     dryer.style.transform = 'translate(' + (x - NOZZLE_X) + 'px,' + (y - NOZZLE_Y) + 'px)';
     glow.style.transform = 'translate(' + (x - 45) + 'px,' + (y - 45) + 'px)';
     dryer.classList.add('on');
     glow.classList.add('on');
   }
   function hideDryer() {
+    if (hair) hair.set(false);
     dryer.classList.remove('on');
     glow.classList.remove('on');
   }
@@ -315,7 +380,10 @@
   // Hover: the cursor itself becomes the dryer over a hidden word
   document.addEventListener('pointermove', function (e) {
     if (e.pointerType === 'touch' || mode === 'drag') return;
-    var over = manual.some(function (it) { return !it.done && near(it, e.clientX, e.clientY, 14); });
+    var overWord = manual.some(function (it) { return !it.done && near(it, e.clientX, e.clientY, 14); });
+    var onHint = e.target.closest && e.target.closest('.hair-hint'); // the hint shows its label instead
+    var over = overWord || (hair && !onHint && hair.at(e.clientX, e.clientY));
+    if (overWord) hoveredWords = true;
     if (over) {
       mode = 'hover';
       hot = { x: e.clientX, y: e.clientY };
@@ -326,7 +394,8 @@
       mode = null;
       hot = null;
       document.documentElement.classList.remove('ink-drying');
-      finishLater(4000);
+      if (hoveredWords) finishLater(4000);
+      hoveredWords = false;
     }
   }, { passive: true });
   document.documentElement.addEventListener('pointerleave', function () {
@@ -334,7 +403,8 @@
     mode = null;
     hot = null;
     document.documentElement.classList.remove('ink-drying');
-    finishLater(4000);
+    if (hoveredWords) finishLater(4000);
+    hoveredWords = false;
   });
 
   // Drag: pick the dryer up from its stand (works with a finger too)
@@ -382,6 +452,7 @@
 
   // Phones: a finger swiped sideways across the words dries them, the dryer under the fingertip
   var finger = null;
+  var fingerOnPhoto = false; // the finger started on the photo, not on the words
   manual.forEach(function (item) {
     item.el.addEventListener('pointerdown', function (e) {
       if (e.pointerType !== 'touch' || mode) return;
@@ -400,10 +471,24 @@
     mode = null;
     hot = null;
     finger = null;
-    finishLater(4000);
+    if (!fingerOnPhoto) finishLater(4000);
+    fingerOnPhoto = false;
   }
   document.addEventListener('pointerup', lift);
   document.addEventListener('pointercancel', lift);
+
+  // Phones: press on the photo and the dryer blows from under the fingertip
+  if (hair) {
+    hair.box.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'touch' || mode) return;
+      finger = e.pointerId;
+      fingerOnPhoto = true;
+      mode = 'finger';
+      hot = { x: e.clientX, y: e.clientY };
+      kick();
+    });
+    hair.box.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+  }
 
   // Tap or click a hidden word: the dryer does that word
   items.forEach(function (item) {

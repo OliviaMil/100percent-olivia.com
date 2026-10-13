@@ -56,8 +56,7 @@ if (!window.location.hash) {
 <section class="page-hero">
   <div class="section-inner">
     <span class="section-label">Learn more</span>
-    <h1>The thinking behind the <em>work</em></h1>
-    <p>The failure modes I keep seeing, the architecture I design against them &mdash; and the same question, brought to the next generation.</p>
+    <h1>Tracking <em>failure modes</em>, empowering <em>scalable oversight</em></h1>
     <div class="page-jump"><a href="#problem">01 &middot; Where clinical AI breaks</a><a href="#approach">02 &middot; How I build it to hold</a><a href="#community">03 &middot; Beyond the work</a></div>
   </div>
 </section>
@@ -67,43 +66,144 @@ if (!window.location.hash) {
   <div class="section-inner">
     <span class="section-label">01 &middot; The Problem</span>
     <div class="section-title">Where clinical AI breaks</div>
-    <p class="section-subtitle">
-      LLMs are powerful, but in high-stakes areas like healthcare, sounding right isn&rsquo;t the same as being right &mdash;
-      and even when AI can explain itself, that doesn&rsquo;t mean experts can verify it.
-    </p>
+    <p class="section-subtitle trace-intro">Follow one query &mdash; <strong>&ldquo;baby blues&rdquo;</strong> &mdash; through all five.</p>
     <div class="problem-grid">
-      <div class="problem-card">
-        <div class="step-num">01</div>
-        <h3>When Retrieval Misleads</h3>
-        <p>The model finds a concept that looks like a match based on word overlap, but means something clinically different. Keyword similarity masks semantic divergence.</p>
+      <div class="problem-card problem-feature">
+        <div class="pf-text">
+          <div class="step-num">01</div>
+          <h3>When Retrieval Misleads</h3>
+          <p class="pf-lead">Matching words isn&rsquo;t matching meaning.</p>
+        </div>
+        <div class="mismatch">
+          <figure class="mm mm-asked">
+            <span class="mm-tag">Searched for</span>
+            <img src="assets/images/retrieval-baby-blues.jpg" alt="Illustration: a new mother sitting tearful beside a crib, titled Baby blues" loading="lazy">
+            <figcaption><strong>Baby blues</strong><span class="who">Patient: the mother</span></figcaption>
+          </figure>
+          <div class="mm-link" aria-hidden="true">
+            <span class="mm-words"><b>baby</b> + <b>blue</b></span>
+            <span class="mm-arrow">&rarr;</span>
+            <span class="mm-verdict">Same words, different patient</span>
+          </div>
+          <figure class="mm mm-got">
+            <span class="mm-tag">Retrieved</span>
+            <span class="mm-x" aria-hidden="true">&times;</span>
+            <img src="assets/images/retrieval-blue-baby.jpg" alt="Illustration: a newborn with a bluish tinge around the lips, titled Blue Baby Disease" loading="lazy">
+            <figcaption><strong>Blue baby disease</strong><span class="who">Patient: the newborn</span></figcaption>
+          </figure>
+          <p class="mm-credit">Illustrations for demonstration only</p>
+        </div>
       </div>
-      <div class="problem-card">
+      <div class="problem-card pc-drift">
         <div class="step-num">02</div>
         <h3>Semantic Drift</h3>
-        <p>The answer starts in the right clinical territory but gradually shifts meaning through plausible-sounding steps &mdash; ending somewhere subtly wrong.</p>
-        <a href="https://medium.com/@olivia.milgrom/a-semantic-drift-perfect-storm-in-medical-ai-f0e9cd1b0f03" target="_blank" rel="noopener" style="display: inline-block; margin-top: 0.75rem; font-size: 0.82rem; font-weight: 500; color: var(--color-accent); text-decoration: none;">Read my case study &rarr;</a>
+        <p>Every step sounds plausible. The endpoint is wrong.</p>
+        <div class="trace"><div class="trace-box drift-box">
+          <ol class="drift">
+            <li><span>Baby blues</span></li>
+            <li><span>Postpartum low mood</span></li>
+            <li><span>Postpartum depression</span></li>
+            <li><span>Major depressive disorder</span></li>
+          </ol>
+          <span class="stamp drift-stamp">Wrong</span>
+        </div></div>
+        <a class="pc-link" href="https://medium.com/@olivia.milgrom/a-semantic-drift-perfect-storm-in-medical-ai-f0e9cd1b0f03" target="_blank" rel="noopener">Drift in the wild: a chatbot&rsquo;s wrong dialysis dosing &rarr;</a>
+      </div>
+      <div class="problem-card pc-side">
+        <div class="pc-text">
+          <div class="step-num">03</div>
+          <h3>Hallucination</h3>
+        </div>
+        <div class="trace"><div class="trace-box">
+          <span class="trace-label">AI answer</span>
+          <div class="ai-answer">Baby blues &rarr; <code>ICD-10-CM F53.7</code></div>
+          <span class="stamp">No such code</span>
+        </div></div>
+      </div>
+      <div class="problem-card pc-side">
+        <div class="pc-text">
+          <div class="step-num">04</div>
+          <h3>The Explainability Gap</h3>
+          <p>Scale versus verified depth.</p>
+        </div>
+        <div class="trace"><div class="trace-box gap-row">
+          <b>An AI answer gives</b>
+          <div class="chips have"><span>a paragraph</span></div>
+          <b>Experts need to</b>
+          <div class="chips need"><span>verify</span><span>explore</span><span>compare</span><span>test a hypothesis</span></div>
+        </div></div>
+        <a class="pc-link pc-link-wide" href="index.html#dci-2026">Recent talk: scalable LLM-as-a-judge isn&rsquo;t scalable oversight &rarr;</a>
       </div>
       <div class="problem-card">
-        <div class="step-num">03</div>
-        <h3>Hallucination</h3>
-        <p>The model generates clinical codes, classifications, or relationships that don't exist. Without a formal knowledge base to check against, fabrications are invisible.</p>
-      </div>
-      <div class="problem-card">
-        <div class="step-num">04</div>
-        <h3>The Explainability Gap</h3>
-        <p>AI can show a reasoning path, but domain experts need to verify, explore, compare, and generate hypotheses &mdash; not just read explanations. That&rsquo;s what it takes to keep the AI accountable.</p>
-      </div>
-      <div class="problem-card" style="grid-column: 1 / -1;">
         <div class="step-num">05</div>
         <h3>Logical Rule Misapplication</h3>
-        <p>Even when what the system reasons over is correct &mdash; the knowledge holds, the source is right, the concept didn&rsquo;t drift &mdash; <em>how</em> it reasons over that knowledge still cannot be compromised.</p>
-        <p style="margin-top: 0.65rem;">Clinical medicine&rsquo;s conditional logic is among the densest of any domain:</p>
-        <ul style="margin: 0.5rem 0 0.65rem 1.1rem; font-size: 0.88rem; color: var(--color-text-muted); line-height: 1.9;">
-          <li><strong>IF &nbsp;/&nbsp; AND &nbsp;/&nbsp; OR</strong></li>
-          <li><strong>UNLESS &nbsp;/&nbsp; EXCEPT</strong></li>
-          <li><strong>Satisfying more than N out of M criteria</strong></li>
-        </ul>
-        <p>When a clinical AI cannot hold that logic, it doesn&rsquo;t fail &mdash; <strong>it shortcuts.</strong></p>
+        <p>Right knowledge, wrong reasoning. Clinical logic is dense &mdash; when AI can&rsquo;t hold it, <strong>it shortcuts.</strong></p>
+        <p class="tree-hint">Swipe to see the whole tree &rarr;</p>
+        <div class="tree-wrap">
+          <svg class="logic-tree" viewBox="0 0 960 414" role="img" aria-labelledby="tree-title tree-desc">
+            <title id="tree-title">The rule as a tree, and the shortcut that skips it</title>
+            <desc id="tree-desc">IF a core symptom (depressed mood OR loss of interest) AND at least 5 of 9 symptoms AND at least 2 weeks, UNLESS a substance or medical cause, THEN major depressive disorder. A patient three days after birth has a core symptom but only 2 of 9 symptoms for 3 days, so the rule is not met. The LLM shortcut jumps from the one matching branch, tearful and low, straight to the diagnosis.</desc>
+            <defs>
+              <marker id="sc-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#BE123C"/></marker>
+            </defs>
+            <g transform="translate(0 14)">
+            <g fill="none" stroke="#CBD5E1" stroke-width="2">
+              <path d="M480 60 V92"/>
+              <path d="M480 128 V152 M150 180 V152 H810 V180 M370 152 V180 M590 152 V180"/>
+              <path d="M150 236 V262 M95 290 V262 H220 V290"/>
+            </g>
+            <!-- THEN -->
+            <rect x="320" y="14" width="320" height="46" rx="12" fill="#1E1B4B"/>
+            <text x="480" y="43" text-anchor="middle" class="t-then"><tspan class="t-op-light">THEN</tspan> major depressive disorder</text>
+            <!-- IF ... AND -->
+            <rect x="405" y="92" width="150" height="36" rx="18" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.5"/>
+            <text x="480" y="115" text-anchor="middle" class="t-op">IF &#183; AND</text>
+            <!-- branches -->
+            <g class="node">
+              <rect x="55" y="180" width="190" height="56" rx="10"/>
+              <text x="150" y="201" text-anchor="middle" class="t-op">OR</text>
+              <text x="150" y="223" text-anchor="middle" class="t-node">a core symptom</text>
+            </g>
+            <g class="node">
+              <rect x="275" y="180" width="190" height="56" rx="10"/>
+              <text x="370" y="201" text-anchor="middle" class="t-op">N of M</text>
+              <text x="370" y="223" text-anchor="middle" class="t-node">&#8805; 5 of 9 symptoms</text>
+            </g>
+            <g class="node">
+              <rect x="495" y="180" width="190" height="56" rx="10"/>
+              <text x="590" y="201" text-anchor="middle" class="t-op">FOR</text>
+              <text x="590" y="223" text-anchor="middle" class="t-node">&#8805; 2 weeks</text>
+            </g>
+            <g class="node">
+              <rect x="715" y="180" width="190" height="56" rx="10"/>
+              <text x="810" y="201" text-anchor="middle" class="t-op">UNLESS</text>
+              <text x="810" y="223" text-anchor="middle" class="t-node t-small">substance or medical cause</text>
+            </g>
+            <g class="node">
+              <rect x="35" y="290" width="120" height="40" rx="10"/>
+              <text x="95" y="315" text-anchor="middle" class="t-leaf">depressed mood</text>
+              <rect x="160" y="290" width="120" height="40" rx="10"/>
+              <text x="220" y="315" text-anchor="middle" class="t-leaf">loss of interest</text>
+            </g>
+            <!-- the patient, three days after birth -->
+            <g class="chip ok"><rect x="38" y="340" width="114" height="26" rx="13"/><text x="95" y="358" text-anchor="middle">&#10003; tearful, low</text></g>
+            <g class="chip na"><rect x="163" y="340" width="114" height="26" rx="13"/><text x="220" y="358" text-anchor="middle">not reported</text></g>
+            <g class="chip bad"><rect x="310" y="246" width="120" height="26" rx="13"/><text x="370" y="264" text-anchor="middle">&#10007; 2 of 9</text></g>
+            <g class="chip bad"><rect x="530" y="246" width="120" height="26" rx="13"/><text x="590" y="264" text-anchor="middle">&#10007; 3 days</text></g>
+            <g class="chip ok"><rect x="750" y="246" width="120" height="26" rx="13"/><text x="810" y="264" text-anchor="middle">&#10003; none</text></g>
+            <!-- verdict -->
+            <rect x="560" y="296" width="345" height="80" rx="12" fill="#F0FDFA" stroke="#5EEAD4" stroke-width="1.5"/>
+            <text x="580" y="324" class="t-verdict">Rule applied: not met</text>
+            <text x="580" y="346" class="t-verdict-sub">Two AND branches fail &#8594; baby blues,</text>
+            <text x="580" y="363" class="t-verdict-sub">not major depressive disorder</text>
+            <!-- the shortcut -->
+            <path d="M35 310 C 2 300, 2 40, 316 37" fill="none" stroke="#BE123C" stroke-width="2.5" stroke-dasharray="7 6" marker-end="url(#sc-head)"/>
+            </g>
+            <text x="58" y="44" class="t-sc-title">LLM SHORTCUT</text>
+            <text x="58" y="66" class="t-shortcut">sad + tearful &#8658;</text>
+          </svg>
+        </div>
+        <p class="tree-legend"><span class="lg lg-ok">&#10003; met</span><span class="lg lg-bad">&#10007; not met</span><span class="lg lg-sc">shortcut: one matching branch taken as the whole compound rule</span></p>
       </div>
     </div>
   </div>
@@ -136,47 +236,53 @@ if (!window.location.hash) {
       <strong style="color: var(--color-text);">Bidirectional grounding &mdash; reasoning built in, not patched on.</strong> Designing systems where clinical knowledge and AI inform each other continuously &mdash; not as a pipeline, but as a layered architecture.
     </p>
 
-    <!-- Architecture Diagram -->
-    <div class="arch-diagram">
-      <div class="arch-flow">
-        <div class="arch-node arch-node-human">Human</div>
-        <div class="arch-arrow">&harr;</div>
-        <div class="arch-node arch-node-llm">LLM<div class="arch-node-sub">semantic interpreter<br>+ hypothesis generator</div></div>
-        <div class="arch-arrow">&harr;</div>
-        <div class="arch-node arch-node-knowledge">
-          <div style="font-size: 0.82rem; font-weight: 600; margin-bottom: 0.4rem;">Knowledge Layers</div>
-          <div class="arch-klayer"><span class="kl-q">How the domain is defined</span> <span class="kl-sep">&middot;</span> Ontology</div>
-          <div class="arch-klayer"><span class="kl-q">How things relate</span> <span class="kl-sep">&middot;</span> Knowledge Graph</div>
-          <div class="arch-klayer"><span class="kl-q">What must hold</span> <span class="kl-sep">&middot;</span> Rules &amp; Constraints</div>
+    <!-- Architecture Diagram: one loop around a flat stack of knowledge layers -->
+    <div class="arch-diagram arch-loop">
+      <div class="loop-grid">
+        <div class="arch-node arch-node-human lp-human">Human<div class="arch-node-sub">asks the question &middot; audits with<br>visual reasoning + hypothesis exploration</div></div>
+        <div class="arch-arrow lp-a1" aria-hidden="true">&#8644;</div>
+        <div class="arch-node arch-node-llm lp-llm">LLM<div class="arch-node-sub">semantic interpreter<br>+ hypothesis generator</div></div>
+        <div class="arch-arrow lp-a2" aria-hidden="true">&#8644;</div>
+        <div class="kstack lp-stack">
+          <div class="kstack-title">Knowledge layers</div>
+          <div class="kcard kc-3"><b>Rules &amp; Constraints</b><span>What must hold</span></div>
+          <div class="kcard kc-2"><b>Knowledge Graph</b><span>How things relate</span></div>
+          <div class="kcard kc-1"><b>Ontology</b><span>How the domain is defined</span></div>
         </div>
-        <div class="arch-arrow">&harr;</div>
-        <div class="arch-node arch-node-reasoner">Reasoning<div class="arch-node-sub">knowledge computation<br>+ verification</div></div>
-        <div class="arch-arrow">&harr;</div>
-        <div class="arch-node arch-node-human">Human<div class="arch-node-sub">visual reasoning<br>+ hypothesis exploration</div></div>
+        <div class="arch-arrow lp-a3" aria-hidden="true">&#8644;</div>
+        <div class="arch-node arch-node-reasoner lp-reason">Reasoning<div class="arch-node-sub">knowledge computation<br>+ verification</div></div>
+        <div class="arch-arrow lp-a4" aria-hidden="true">&#8644;</div>
       </div>
+      <p class="loop-note">&#8635; One loop, not a pipeline &mdash; any step can send work back.</p>
     </div>
 
     <!-- Explanatory Steps -->
     <div class="approach-flow">
       <div class="approach-step" id="layered-knowledge">
         <div class="step-num">01</div>
-        <span class="step-tag">Content &amp; Knowledge Engineering</span>
         <h3>Layered Knowledge Architecture</h3>
-        <p style="margin-bottom: 0.75rem;"><span style="font-style: italic; color: var(--color-text); font-weight: 500;">&lsquo;RAG is dead&rsquo;</span> &mdash; when voices across the industry say this, what they mean is that store-and-retrieve was never enough.</p>
-        <p>Even knowledge graphs &mdash; now the fastest-rising trusted context layer for GenAI in enterprise AI (according to <a href="https://www.gartner.com/en/articles/hype-cycle-for-artificial-intelligence" target="_blank" rel="noopener" style="color: var(--color-accent); text-decoration: underline;">Gartner</a>) &mdash; are only one layer. I specialize in the deeper conceptual infrastructure where clinical logic can be <em>proven</em>, not just looked up.</p>
-        <a href="index.html#amia-2025-poster" style="display: inline-block; margin-top: 0.9rem; font-size: 0.8rem; font-weight: 500; color: var(--color-accent); text-decoration: none;">In practice: AMIA 2025 poster on knowledge-graph propositional reasoning &rarr;</a>
+        <p><span style="font-style: italic; color: var(--color-text); font-weight: 500;">&lsquo;RAG is dead&rsquo;</span> &mdash; store-and-retrieve was never enough. Even knowledge graphs, <a href="https://www.gartner.com/en/articles/hype-cycle-for-artificial-intelligence" target="_blank" rel="noopener" style="color: var(--color-accent); text-decoration: underline;">Gartner</a>&rsquo;s fastest-rising context layer, are one layer of three. Clinical logic has to be <em>proven</em>, not looked up.</p>
+        <a href="index.html#amia-2025-poster" style="display: inline-block; margin-top: 0.9rem; font-size: 0.8rem; font-weight: 500; color: var(--color-accent); text-decoration: none;">In practice: AMIA 2025 poster &rarr;</a>
       </div>
       <div class="approach-step" id="hybrid-reasoning">
         <div class="step-num">02</div>
         <h3>Hybrid Retrieval + Reasoning Loop</h3>
-        <p>Most AI systems stop at retrieval; others still rely on black-box machine learning. Neither LLM nor symbolic reasoning alone is sufficient. I design hybrid approaches where clinical knowledge and AI inform each other continuously.</p>
-        <a href="index.html#amia-2025-podium" style="display: inline-block; margin-top: 0.9rem; font-size: 0.8rem; font-weight: 500; color: var(--color-accent); text-decoration: none;">In practice: AMIA 2025 podium talk on hybrid retrieval and reasoning &rarr;</a>
+        <p class="tension-lead">The tension persists:</p>
+        <ul class="tension">
+          <li>real-world knowledge is incomplete</li>
+          <li>contradictory explanation paths arise</li>
+        </ul>
+        <p>Verifying at scale against an explosion of clinical and AI-generated knowledge demands <strong>more than an LLM or symbolic reasoning can do alone.</strong></p>
+        <a href="index.html#amia-2025-podium" style="display: inline-block; margin-top: 0.9rem; font-size: 0.8rem; font-weight: 500; color: var(--color-accent); text-decoration: none;">In practice: AMIA 2025 podium talk &rarr;</a>
       </div>
       <div class="approach-step">
         <div class="step-num">03</div>
-        <span class="step-tag">Enterprise Deployment &amp; Governance</span>
         <h3>Automatic Evaluation at Scale</h3>
-        <p>Evaluation as governance: every answer traced back to its contexts and original intent &mdash; built to be:</p>
+        <ul class="tension eval-list">
+          <li><strong>Evaluation store</strong></li>
+          <li><strong>Prompt management</strong></li>
+        </ul>
+        <p>Every answer traced to its context and intent.</p>
         <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.6rem;">
           <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 4px; background: #EFF6FF; color: #2563EB;">Configurable</span>
           <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 4px; background: #EFF6FF; color: #2563EB;">Auditable</span>
@@ -184,20 +290,37 @@ if (!window.location.hash) {
           <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 4px; background: #EFF6FF; color: #2563EB;">Enterprise-scale</span>
           <span style="font-size: 0.78rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 4px; background: #EFF6FF; color: #2563EB;">Governable</span>
         </div>
-        <a href="index.html#dci-2026" style="display: inline-block; margin-top: 0.9rem; font-size: 0.8rem; font-weight: 500; color: var(--color-accent); text-decoration: none;">In practice: Harvard DCI finalist talk on LLM-as-a-judge for clinical AI governance &rarr;</a>
+        <a href="index.html#dci-2026" style="display: inline-block; margin-top: 0.9rem; font-size: 0.8rem; font-weight: 500; color: var(--color-accent); text-decoration: none;">In practice: Harvard DCI finalist talk &rarr;</a>
         <!-- PRESERVED DETAIL: AI evaluation tools deployed via MCP (Model Context Protocol — an open standard for connecting AI models to external knowledge and tools). -->
       </div>
-      <div class="approach-step" id="visual-reasoning" style="background: linear-gradient(135deg, #FAFAF8 0%, #EFF6FF 100%); border: 1.5px solid #bfd4f2;">
-        <div class="step-num">04</div>
+      <div class="approach-step vr-step" id="visual-reasoning" style="background: linear-gradient(135deg, #FAFAF8 0%, #EFF6FF 100%); border: 1.5px solid #bfd4f2;">
+        <div class="vr-text">
+          <div class="step-num">04</div>
         <h3><span style="background: linear-gradient(135deg, #60A5FA, #A78BFA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Visual</span> Reasoning &amp; Sensemaking</h3>
-        <p style="font-style: italic; color: var(--color-text); font-weight: 500; margin-bottom: 0.6rem;">Explainability, taken even to its visual form.</p>
-        <p style="margin-bottom: 0.8rem;">A paradigm shift in how auditing happens &mdash; empowering domain experts to go from open-ended investigation to focused hypotheses.</p>
+        <p style="font-style: italic; color: var(--color-text); font-weight: 500; margin-bottom: 0.6rem;">Explainability, taken to its visual form.</p>
+        <p style="margin-bottom: 0.8rem;">Experts move from open-ended investigation to focused hypotheses.</p>
         <div style="display: flex; gap: 0.5rem; margin-top: 0.4rem; flex-wrap: wrap;">
-          <span style="font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 12px; background: rgba(96,165,250,0.12); color: #3B82F6; font-weight: 500;">Surface inconsistencies</span>
-          <span style="font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 12px; background: rgba(167,139,250,0.12); color: #7C3AED; font-weight: 500;">Expose assumptions</span>
-          <span style="font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 12px; background: rgba(96,165,250,0.12); color: #3B82F6; font-weight: 500;">Explore hypotheses</span>
+          <span style="font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 12px; background: #FFE4E6; color: #E11D48; font-weight: 600;">&#10007; Surface inconsistencies</span>
+          <span style="font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 12px; background: #FEF3C7; color: #B45309; font-weight: 600;">&#8943; Expose assumptions</span>
         </div>
-        <a href="index.html#amia-2026" style="display: inline-block; margin-top: 0.9rem; font-size: 0.8rem; font-weight: 500; color: var(--color-accent); text-decoration: none;">In practice: AMIA 2026 talk on visual auditing of classification logic &rarr;</a>
+        <a href="index.html#amia-2026" style="display: inline-block; margin-top: 0.9rem; font-size: 0.8rem; font-weight: 500; color: var(--color-accent); text-decoration: none;">In practice: AMIA 2026 talk &rarr;</a>
+        </div>
+        <div class="vr-visual">
+          <svg class="lens-viz" viewBox="0 0 620 212" role="img" aria-labelledby="lens-title lens-desc">
+          <title id="lens-title">A visual working set: from open-ended investigation to a focused hypothesis</title>
+          <desc id="lens-desc">A lens wanders across a dense knowledge graph, then settles on a small working set. Inside it, one hypothesis path lights up, an inconsistent node is flagged, and an unstated assumption shows as a dashed link.</desc>
+          <defs><clipPath id="lens-clip"><circle r="40"><animate attributeName="r" dur="11s" repeatCount="indefinite" keyTimes="0;0.65;0.72;0.9;1" values="40;40;74;74;40"/><animateTransform attributeName="transform" type="translate" dur="11s" repeatCount="indefinite" keyTimes="0;0.12;0.25;0.33;0.45;0.52;0.65;0.92;1" values="130 108;130 108;258 82;258 82;226 150;226 150;402 102;402 102;130 108"/></circle></clipPath></defs>
+          <g class="lens-grey"><line x1="36" y1="46" x2="84" y2="112" class="g-e"/><line x1="84" y1="112" x2="52" y2="172" class="g-e"/><line x1="36" y1="46" x2="126" y2="58" class="g-e"/><line x1="126" y1="58" x2="150" y2="146" class="g-e"/><line x1="84" y1="112" x2="126" y2="58" class="g-e"/><line x1="84" y1="112" x2="150" y2="146" class="g-e"/><line x1="126" y1="58" x2="196" y2="30" class="g-e"/><line x1="196" y1="30" x2="214" y2="104" class="g-e"/><line x1="126" y1="58" x2="214" y2="104" class="g-e"/><line x1="150" y1="146" x2="244" y2="178" class="g-e"/><line x1="214" y1="104" x2="252" y2="112" class="g-e"/><line x1="252" y1="112" x2="296" y2="134" class="g-e"/><line x1="244" y1="178" x2="296" y2="134" class="g-e"/><line x1="214" y1="104" x2="272" y2="58" class="g-e"/><line x1="196" y1="30" x2="272" y2="58" class="g-e"/><line x1="272" y1="58" x2="322" y2="24" class="g-e"/><line x1="272" y1="58" x2="296" y2="134" class="g-e"/><line x1="296" y1="134" x2="304" y2="190" class="g-e"/><line x1="244" y1="178" x2="304" y2="190" class="g-e"/><line x1="272" y1="58" x2="362" y2="80" class="g-e"/><line x1="322" y1="24" x2="398" y2="58" class="g-e"/><line x1="296" y1="134" x2="372" y2="134" class="g-e"/><line x1="304" y1="190" x2="372" y2="134" class="g-e"/><line x1="252" y1="112" x2="362" y2="80" class="g-e"/><line x1="362" y1="80" x2="398" y2="58" class="g-e"/><line x1="362" y1="80" x2="404" y2="100" class="g-e"/><line x1="398" y1="58" x2="404" y2="100" class="g-e"/><line x1="398" y1="58" x2="442" y2="88" class="g-e"/><line x1="442" y1="88" x2="404" y2="100" class="g-e"/><line x1="404" y1="100" x2="420" y2="128" class="g-e"/><line x1="420" y1="128" x2="372" y2="134" class="g-e"/><line x1="372" y1="134" x2="362" y2="80" class="g-e"/><line x1="442" y1="88" x2="420" y2="128" class="g-e"/><line x1="398" y1="58" x2="474" y2="28" class="g-e"/><line x1="442" y1="88" x2="526" y2="74" class="g-e"/><line x1="420" y1="128" x2="506" y2="156" class="g-e"/><line x1="506" y1="156" x2="462" y2="188" class="g-e"/><line x1="474" y1="28" x2="526" y2="74" class="g-e"/><line x1="526" y1="74" x2="506" y2="156" class="g-e"/><line x1="420" y1="128" x2="462" y2="188" class="g-e"/><circle cx="36" cy="46" r="5" class="g-n"/><circle cx="84" cy="112" r="5" class="g-n"/><circle cx="52" cy="172" r="5" class="g-n"/><circle cx="126" cy="58" r="5" class="g-n"/><circle cx="150" cy="146" r="5" class="g-n"/><circle cx="196" cy="30" r="5" class="g-n"/><circle cx="214" cy="104" r="5" class="g-n"/><circle cx="244" cy="178" r="5" class="g-n"/><circle cx="272" cy="58" r="5" class="g-n"/><circle cx="296" cy="134" r="5" class="g-n"/><circle cx="322" cy="24" r="5" class="g-n"/><circle cx="304" cy="190" r="5" class="g-n"/><circle cx="474" cy="28" r="5" class="g-n"/><circle cx="506" cy="156" r="5" class="g-n"/><circle cx="526" cy="74" r="5" class="g-n"/><circle cx="462" cy="188" r="5" class="g-n"/><circle cx="252" cy="112" r="5" class="g-n"/><circle cx="362" cy="80" r="5" class="g-n"/><circle cx="398" cy="58" r="5" class="g-n"/><circle cx="442" cy="88" r="5" class="g-n"/><circle cx="420" cy="128" r="5" class="g-n"/><circle cx="372" cy="134" r="5" class="g-n"/><circle cx="404" cy="100" r="5" class="g-n"/></g>
+          <g clip-path="url(#lens-clip)"><rect width="620" height="212" class="lens-bg"/><line x1="36" y1="46" x2="84" y2="112" class="c-e"/><line x1="84" y1="112" x2="52" y2="172" class="c-e"/><line x1="36" y1="46" x2="126" y2="58" class="c-e"/><line x1="126" y1="58" x2="150" y2="146" class="c-e"/><line x1="84" y1="112" x2="126" y2="58" class="c-e"/><line x1="84" y1="112" x2="150" y2="146" class="c-e"/><line x1="126" y1="58" x2="196" y2="30" class="c-e"/><line x1="196" y1="30" x2="214" y2="104" class="c-e"/><line x1="126" y1="58" x2="214" y2="104" class="c-e"/><line x1="150" y1="146" x2="244" y2="178" class="c-e"/><line x1="214" y1="104" x2="252" y2="112" class="c-e"/><line x1="252" y1="112" x2="296" y2="134" class="c-e"/><line x1="244" y1="178" x2="296" y2="134" class="c-e"/><line x1="214" y1="104" x2="272" y2="58" class="c-e"/><line x1="196" y1="30" x2="272" y2="58" class="c-e"/><line x1="272" y1="58" x2="322" y2="24" class="c-e"/><line x1="272" y1="58" x2="296" y2="134" class="c-e"/><line x1="296" y1="134" x2="304" y2="190" class="c-e"/><line x1="244" y1="178" x2="304" y2="190" class="c-e"/><line x1="272" y1="58" x2="362" y2="80" class="c-e"/><line x1="322" y1="24" x2="398" y2="58" class="c-e"/><line x1="296" y1="134" x2="372" y2="134" class="c-e"/><line x1="304" y1="190" x2="372" y2="134" class="c-e"/><line x1="252" y1="112" x2="362" y2="80" class="c-e"/><line x1="362" y1="80" x2="398" y2="58" class="c-e-ws"/><line x1="362" y1="80" x2="404" y2="100" class="c-path"/><line x1="398" y1="58" x2="404" y2="100" class="c-e-ws"/><line x1="398" y1="58" x2="442" y2="88" class="c-e-ws"/><line x1="442" y1="88" x2="404" y2="100" class="c-e-ws"/><line x1="404" y1="100" x2="420" y2="128" class="c-path"/><line x1="420" y1="128" x2="372" y2="134" class="c-e-ws"/><line x1="372" y1="134" x2="362" y2="80" class="c-e-ws"/><line x1="442" y1="88" x2="420" y2="128" class="c-e-ws"/><line x1="398" y1="58" x2="474" y2="28" class="c-e"/><line x1="442" y1="88" x2="526" y2="74" class="c-e"/><line x1="420" y1="128" x2="506" y2="156" class="c-e"/><line x1="506" y1="156" x2="462" y2="188" class="c-e"/><line x1="474" y1="28" x2="526" y2="74" class="c-e"/><line x1="526" y1="74" x2="506" y2="156" class="c-e"/><line x1="420" y1="128" x2="462" y2="188" class="c-e"/><line x1="372" y1="134" x2="404" y2="100" class="c-assume"/><circle cx="36" cy="46" r="5" class="c-n"/><circle cx="84" cy="112" r="5" class="c-n"/><circle cx="52" cy="172" r="5" class="c-n"/><circle cx="126" cy="58" r="5" class="c-n"/><circle cx="150" cy="146" r="5" class="c-n"/><circle cx="196" cy="30" r="5" class="c-n"/><circle cx="214" cy="104" r="5" class="c-n"/><circle cx="244" cy="178" r="5" class="c-n"/><circle cx="272" cy="58" r="5" class="c-n"/><circle cx="296" cy="134" r="5" class="c-n"/><circle cx="322" cy="24" r="5" class="c-n"/><circle cx="304" cy="190" r="5" class="c-n"/><circle cx="474" cy="28" r="5" class="c-n"/><circle cx="506" cy="156" r="5" class="c-n"/><circle cx="526" cy="74" r="5" class="c-n"/><circle cx="462" cy="188" r="5" class="c-n"/><circle cx="252" cy="112" r="5" class="c-n"/><circle cx="362" cy="80" r="6.5" class="c-hyp"/><circle cx="398" cy="58" r="6" class="c-ws"/><circle cx="442" cy="88" r="6.5" class="c-bad"/><circle cx="420" cy="128" r="6.5" class="c-hyp"/><circle cx="372" cy="134" r="6" class="c-ws"/><circle cx="404" cy="100" r="6.5" class="c-hyp"/></g>
+          <circle r="40" class="lens-ring"><animate attributeName="r" dur="11s" repeatCount="indefinite" keyTimes="0;0.65;0.72;0.9;1" values="40;40;74;74;40"/><animateTransform attributeName="transform" type="translate" dur="11s" repeatCount="indefinite" keyTimes="0;0.12;0.25;0.33;0.45;0.52;0.65;0.92;1" values="130 108;130 108;258 82;258 82;226 150;226 150;402 102;402 102;130 108"/></circle>
+          <g class="lens-call"><animate attributeName="opacity" dur="11s" repeatCount="indefinite" keyTimes="0;0.7;0.75;0.88;0.92;1" values="0;0;1;1;0;0"/>
+            <text x="482" y="93" class="t-bad">&#10007; inconsistency</text>
+            <text x="332" y="166" text-anchor="end" class="t-assume">unstated assumption</text>
+          </g>
+          <text x="6" y="206" class="t-phase"><animate attributeName="opacity" dur="11s" repeatCount="indefinite" keyTimes="0;0.6;0.66;0.94;1" values="1;1;0;0;1"/>open-ended investigation &#8230;</text>
+          <text x="614" y="206" text-anchor="end" class="t-phase t-focus"><animate attributeName="opacity" dur="11s" repeatCount="indefinite" keyTimes="0;0.7;0.75;0.88;0.92;1" values="0;0;1;1;0;0"/>&#8594; focused hypothesis</text>
+        </svg>
+        </div>
       </div>
     </div>
   </div>
@@ -320,5 +443,12 @@ if (!window.location.hash) {
   <div style="margin-top: 0.4rem; font-size: 0.72rem; opacity: 0.7;">This is a personal website. Views expressed here are my own.</div>
 </footer>
 
+<script>
+  (function () {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.lens-viz').forEach(function (svg) { svg.pauseAnimations(); svg.setCurrentTime(8.8); });
+    }
+  })();
+</script>
 </body>
 </html>
